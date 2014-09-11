@@ -1,0 +1,51 @@
+#%RAML 0.8
+---
+title: API Resource Example
+baseUri: https://localhost/api/{version}
+version: v1
+protocols: [HTTPS]
+mediaType: application/json
+
+traits:
+  - private: !include _traits/private.raml
+
+/myResource:
+  description: This is my resource.
+  post:
+    description: Create a resource.
+    body:
+      application/json:
+        example: |
+          { "name" : "myResource" }
+    responses:
+      201:
+        body:
+          application/json:
+            example: |
+              { "id" : 1, "name" : "myResource" }
+  /{myResourceId}:
+    get:
+      description: Retrieve a resource.
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                { "id" : 1, "name" : "myResource" }
+        404:
+          description: The resource was not found.
+    delete:
+      is: [private]
+      description: Delete a resource.
+
+/adminResource:
+  is: [private]
+  description: This is a private resource.
+  get:
+    description: Get secret message.
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {"secret" : "message"}

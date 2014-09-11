@@ -1,0 +1,57 @@
+doctype html
+html
+	head
+		title= title
+		meta(charset='utf8')
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+		meta(name='description', content= description)
+		if minifyAssets
+			link(rel="stylesheet", href="/css/global.css")
+		else
+			link(rel="stylesheet", href="/css/bootstrap.css")
+			link(rel="stylesheet", href="/css/app.css")
+			link(rel="stylesheet", href="/css/raml.css")
+			link(rel="stylesheet", href="/css/highlight.github.min.css")
+
+	body
+
+		nav.navbar.navbar-default.collapse.navbar-collapse#navbarcollapse
+			.container
+				ul.nav.navbar-nav
+					li(class="#{ title == 'Digital Commerce' ? 'active' : ''}")
+						a(href="/") Home
+					for s in collections.sections
+						li(class="#{ menuIndex == s.menuIndex || section == s.section ? 'active' : '' }")
+							a(href=s.link)
+								| #{s.sectionName}
+								if s.private
+									i.glyphicon.glyphicon-lock
+
+		.container
+			.row
+				.col-sm-3.col-sm-push-9
+					block menu
+						if section && subsections[section]
+							h1 Sections
+							hr
+							ul.nav.subnav
+								for subsection in subsections[section]
+									li(class="#{ title == subsection.title ? 'active' : '' }")
+										a(href=subsection.link)
+											| #{subsection.title}
+											if subsection.private
+												i.glyphicon.glyphicon-lock
+				.col-sm-9.col-sm-pull-3
+					a(id="top")
+					h1= title
+					hr
+					block body
+						div!= contents
+
+		if minifyAssets
+			script(type="text/javascript", src="/js/global.js")
+		else
+			script(type="text/javascript", src="/js/jquery.min.js")
+			script(type="text/javascript", src="/js/bootstrap.js")
+			script(type="text/javascript", src="/js/smoothscroll.js")
+			script(type="text/javascript", src="/js/app.js")

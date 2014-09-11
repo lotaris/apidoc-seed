@@ -1,0 +1,110 @@
+
+.markdown *:last-child
+	margin-bottom 0
+
+
+.parent
+	color #999
+
+.list-group-item
+	& > .badge
+		float none
+		margin-right 6px
+
+.panel-title
+	& > .block
+		& > .badge
+			float right
+			margin-left 5px
+
+.badge
+	border-radius 0
+	text-transform uppercase
+	min-width 70px
+	font-weight normal
+	color #f3f3f6
+	line-height normal
+
+
+.block
+	display block
+	.badge
+		visibility hidden
+	&.collapsed
+		.badge
+			visibility visible
+
+.block .glyphicon, .panel-heading > h3 .glyphicon
+		font-size 12px
+		margin-left 5px
+		color #555
+
+.panel-warning .panel-heading > h3 .glyphicon
+		font-size 12px
+		margin-left 5px
+		color #8a6d3b
+
+.badge > .glyphicon
+	color white
+	margin-left 5px
+	margin-right 1px
+
+.badge_get
+	background-color #63a8e2
+
+.badge_post
+	background-color #6cbd7d
+
+.badge_put
+	background-color #22bac4
+
+.badge_delete
+	background-color #d26460
+
+.list-group, .panel-group
+	margin-bottom 0
+
+.panel-group
+	.panel
+		& + .panel-white
+			margin-top 0
+	.panel-white
+		border-bottom 1px solid #F5F5F5
+		border-radius 0
+
+.panel-white
+	&:last-child
+		border-bottom-color white
+		-webkit-box-shadow none
+		box-shadow none
+	.panel-heading
+		background white
+
+.tab-pane
+	ul
+		padding-left 2em
+	h2
+		font-size 1.2em
+		padding-bottom 4px
+		border-bottom 1px solid #ddd
+	h3
+		font-size 1.1em
+
+.tab-content
+	border-left 1px solid #ddd
+	border-right 1px solid #ddd
+	border-bottom 1px solid #ddd
+	padding 10px
+
+.resource-description
+	border-bottom 1px solid #ddd
+	background #fcfcfc
+	padding 15px 15px 0 15px
+	margin -15px -15px 10px -15px
+
+.modal .well
+	margin-bottom 0
+
+.panel-warning
+	.panel-footer
+		border-top solid 1px #faebcc
