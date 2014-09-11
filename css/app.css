@@ -1,0 +1,153 @@
+body {
+  padding: 0;
+}
+a:hover {
+  text-decoration: underline;
+}
+p {
+  line-height: 24px;
+  margin-bottom: 17px;
+}
+table {
+  margin-bottom: 15px;
+}
+th,
+td {
+  border: 1px dotted #ccc;
+  padding: 5px 15px;
+}
+th {
+  background-color: #eee;
+}
+div > p > img {
+  width: 100%;
+}
+.nav.navbar-nav {
+  margin-top: 0;
+}
+.nav.navbar-nav li.active a {
+  border-color: #999;
+  border-width: 1px;
+  border-style: none none solid none;
+}
+.nav.subnav li.active a {
+  border-width: 2px;
+  border-style: none none none solid;
+}
+.nav.subnav li a {
+  padding: 5px 5px;
+}
+.nav.subnav li a .glyphicon {
+  font-size: 12px;
+  margin-left: 10px;
+}
+/* main black header bar with Forbes logo */
+.navbar.navbar-default.header {
+  margin: 0px;
+  padding: 10px 0px;
+  background: #000 url("/apidoc-seed/img/gradient.jpg") no-repeat;
+  background-size: auto 100%;
+}
+h2.logo {
+  color: #585858;
+  margin-top: 22px;
+  margin-bottom: 24px;
+}
+h2.logo:before {
+  background-image: url("/apidoc-seed/img/forbes_digital_logo.png");
+  background-repeat: no-repeat;
+  background-size: 250px auto;
+  display: block;
+  float: left;
+  height: 68px;
+  width: 250px;
+  content: "";
+  margin-top: -8px;
+  margin-bottom: -35px;
+  margin-right: 5px;
+}
+@media (max-width: 768px) {
+  .nav.navbar-nav {
+    margin-right: -30px;
+    margin-left: -30px;
+  }
+  h2.logo {
+    margin-left: 158px;
+    margin-top: 15px;
+    margin-bottom: -7px;
+  }
+  h2.logo:before {
+    background-position: -55px 0;
+    height: 36px;
+    width: 142px;
+    margin-left: -158px;
+  }
+  h2.logo .navbar-toggle {
+    margin: 0 10px;
+  }
+}
+nav.navbar .nav.navbar-nav > li > a > .glyphicon {
+  font-size: 12px;
+  margin-left: 6px;
+}
+.navbar-default .navbar-toggle {
+  border: none;
+  background: transparent;
+  padding-bottom: 1px;
+}
+.navbar-default .navbar-toggle:focus {
+  background: none;
+}
+.navbar-default .navbar-toggle:hover {
+  background-color: #585858;
+}
+.navbar-default .navbar-toggle .glyphicon {
+  color: #ec7100;
+}
+.navbar-default .navbar-toggle.collapsed .glyphicon {
+  transform: rotate(180deg);
+}
+/* expanded rows in the resource panels */
+.list-group span p {
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+/* footer of the resource panels */
+.panel-footer {
+  padding: 0px 20px 0px 0px;
+  text-align: right;
+}
+.panel-footer a {
+  display: block;
+  text-align: right;
+  color: #ada9a9;
+}
+/* styling for the private blog posts */
+.panel-warning .panel-footer {
+  background-color: #fcf8e3;
+}
+span.glyphicon.glyphicon-lock {
+  color: #555;
+  margin-right: 10px;
+}
+.private {
+  border: solid 1px #999;
+  border-radius: 3px;
+  margin: 10px 0px 10px -45px;
+  padding: 10px 10px 10px 45px;
+  position: relative;
+}
+.private .glyphicon {
+  margin-left: 7px;
+  margin-top: 7px;
+}
+.private--vertical-bar {
+  background-color: #e7e7e7;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+}

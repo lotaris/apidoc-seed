@@ -1,0 +1,68 @@
+<!DOCTYPE html><html><head><title>Overview</title><meta charset="utf8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description"><link rel="stylesheet" href="/apidoc-seed/css/global.css"></head><body><nav id="navbarcollapse" class="navbar navbar-default collapse navbar-collapse"><div class="container"><ul class="nav navbar-nav"><li><a href="/apidoc-seed/">Home</a></li><li class="active"><a href="/apidoc-seed/api">API Reference</a></li><li><a href="/apidoc-seed/blog">Blog</a></li><li><a href="/apidoc-seed/support">Support</a></li><li><a href="/apidoc-seed/howto">HOWTO<i class="glyphicon glyphicon-lock"></i></a></li></ul></div></nav><div class="container"><div class="row"><div class="col-sm-3 col-sm-push-9"><h1>Resources</h1><hr><ul class="nav subnav"><li><a href="/apidoc-seed/api/reference/#myResource"><span>/myResource</span></a></li><li><a href="/apidoc-seed/api/reference/#adminResource"><span>/adminResource</span><i class="glyphicon glyphicon-lock"></i></a></li></ul></div><div class="col-sm-9 col-sm-pull-3"><a id="top"></a><h1>Overview</h1><hr><div><p>This pages contains general documentation about the API. Use the links on the
+right to navigate to specific resources.</p>
+<h3 id="content-type">Content-type</h3>
+<p>The API uses the JSON format. Unless specified otherwise, all requests and 
+response should have the <code>Content-Type: application/json</code> header.</p>
+<h3 id="http-verbs">HTTP verbs</h3>
+<p>The API uses the standard HTTP verbs to perform CRUD operations (<strong>C</strong>reate, 
+<strong>R</strong>etrieve, <strong>U</strong>pdate, <strong>D</strong>elete) on resources, following standard RESTful
+ API practices. Please refer to the <a href="/apidoc-seed/api/restpatterns">REST Patterns section</a> 
+ for a list of custom patterns implemented in the API.</p>
+<p>Find below a quick summary of how HTTP verbs are used in the API:</p>
+<table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td>Used for retrieving a resource or a collection of resources.</td>
+</tr>
+<tr>
+<td><code>HEAD</code></td>
+<td>Has the same behaviour as the <code>GET</code> verb but does not return the response body (only the headers). Notice that this verb is only available for some resources.</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td>Used for creating a new resource or performing a non-CRUD operation on a resource.</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td>Used to perform a full update of a resource (replacing the resource by the JSON data provided in the request).</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td>Used to perform a partial update of a resource (only updating the fields of the resource specified in the JSON data provided in the request).</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td>Used for deleting resources.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="authentication">Authentication</h3>
+<p>To interact with the API, your client will need to be authenticated. This is done by using the <strong>Authorization</strong> header with the username and password of the client and gives something that looks like:</p>
+<pre><code><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</span>
+</code></pre><h3 id="errors">Errors</h3>
+<p>In case of error, the API will send a JSON response with the list of errors. 
+Each error has a human-readable message and a code. The code identifies the 
+error type and can be used to handle specific errors differently or for 
+translation purposes.</p>
+<pre><code><span class="hljs-status">HTTP/1.1 <span class="hljs-number">400</span> Bad Request</span>
+<span class="hljs-attribute">X-Pagination</span>: <span class="hljs-string">5;2;7;35</span>
+
+<span class="json">{
+  "<span class="hljs-attribute">errors</span>": <span class="hljs-value">[
+    { 
+      "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"JSON parsing error."</span></span>,
+      "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-number">10000</span>
+    </span>}
+  ]
+</span>}</span>
+</code></pre><h3 id="dates">Dates</h3>
+<p>All dates returned by the API are in UTC and use the <code>ISO-8601</code> format (ex: 
+<code>2015-02-15T05:21:07Z</code>).</p>
+</div></div></div></div><script type="text/javascript" src="/apidoc-seed/js/global.js"></script></body></html>
