@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><title>Private Content</title><meta charset="utf8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description"><link rel="stylesheet" href="/apidoc-seed/css/global.css"></head><body><nav id="navbarcollapse" class="navbar navbar-default collapse navbar-collapse"><div class="container"><ul class="nav navbar-nav"><li><a href="/apidoc-seed/">Home</a></li><li><a href="/apidoc-seed/api">API Reference</a></li><li><a href="/apidoc-seed/blog">Blog</a></li><li><a href="/apidoc-seed/support">Support</a></li><li class="active"><a href="/apidoc-seed/howto">HOWTO<i class="glyphicon glyphicon-lock"></i></a></li></ul></div></nav><div class="container"><div class="row"><div class="col-sm-3 col-sm-push-9"><h1>Sections</h1><hr><ul class="nav subnav"><li><a href="/apidoc-seed/howto">Introduction<i class="glyphicon glyphicon-lock"></i></a></li><li><a href="/apidoc-seed/howto/new-page">Add a new Page<i class="glyphicon glyphicon-lock"></i></a></li><li><a href="/apidoc-seed/howto/new-api-resource">Add a new API Resource<i class="glyphicon glyphicon-lock"></i></a></li><li class="active"><a href="/apidoc-seed/howto/private-content">Private Content<i class="glyphicon glyphicon-lock"></i></a></li></ul></div><div class="col-sm-9 col-sm-pull-3"><a id="top"></a><h1>Private Content</h1><hr><div><h2 id="summary">Summary</h2>
+<!DOCTYPE html><html><head><title>Private Content</title><meta charset="utf8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description"><link rel="stylesheet" href="/apidoc-seed/css/global.css"></head><body><nav id="navbarcollapse" class="navbar navbar-default collapse navbar-collapse"><div class="container"><ul class="nav navbar-nav"><li><a href="/apidoc-seed/">Home</a></li><li><a href="/apidoc-seed/api">API Reference</a></li><li><a href="/apidoc-seed/blog">Blog</a></li><li><a href="/apidoc-seed/support">Support</a></li><li class="active"><a href="/apidoc-seed/howto">HOWTO<i class="glyphicon glyphicon-lock"></i></a></li></ul></div></nav><div class="container"><div class="row"><div class="col-sm-3 col-sm-push-9"><h1>Sections</h1><hr><ul class="nav subnav"><li><a href="/apidoc-seed/howto">Introduction<i class="glyphicon glyphicon-lock"></i></a></li><li><a href="/apidoc-seed/howto/new-page">Add a new Page<i class="glyphicon glyphicon-lock"></i></a></li><li><a href="/apidoc-seed/howto/new-api-resource">Add a new API Resource<i class="glyphicon glyphicon-lock"></i></a></li><li class="active"><a href="/apidoc-seed/howto/private-content">Private Content<i class="glyphicon glyphicon-lock"></i></a></li></ul></div><div class="col-sm-9 col-sm-pull-3"><a id="top"></a><h1>Private Content</h1><hr><div><h3 id="summary">Summary</h3>
 <p>You might have internal or classified parts in your documentation that you
 don’t want to publish. For this reason, you can tag resources, methods, pages
 and parts of a page or description as <em>private</em>.</p>
@@ -19,7 +19,7 @@ public and internal usage.</p>
 <li>As a <a href="#private-block-within-a-page">block within a page</a></li>
 <li>In an <a href="#private-api-resource">API resource</a></li>
 </ul>
-<h2 id="private-page">Private Page</h2>
+<h3 id="private-page">Private Page</h3>
 <p>To make a whole page private, add <code>private: true</code> to the front-matter of the
 page:</p>
 <pre><code class="lang-markdown"><span class="hljs-bullet">---
@@ -31,7 +31,7 @@ Private content here...
 </code></pre>
 <p>When building the private site, a little “lock” icon shows up besides the menu
 pointing to that page and it will be completely discarded for the public site.</p>
-<h2 id="private-block-within-a-page">Private Block Within a Page</h2>
+<h3 id="private-block-within-a-page">Private Block Within a Page</h3>
 <p>To add some private content within a public page, just enclose your content 
 in <code>&lt;private&gt;</code> tags as follows:</p>
 <pre><code>Some public content here
@@ -53,7 +53,7 @@ documentation)</li>
 <li>You can also use the <code>&lt;private&gt;</code> element in the markdown file of the RAML 
 documentation (to add private notes to resources descriptions)</li>
 </ul>
-<h2 id="private-api-resource">Private API Resource</h2>
+<h3 id="private-api-resource">Private API Resource</h3>
 <p>It’s equally possible to tag a resource or method in your RAML documentation
 as private. This can be achieved by using the <code>private</code> trait. Resources and 
 methods that are marked private won’t show up in the public site and are
@@ -68,7 +68,7 @@ tagged with a small “lock” icon.</p>
     is: [private]
     <span class="hljs-keyword">...</span>
 </code></pre>
-<h2 id="references">References</h2>
+<h3 id="references">References</h3>
 <p>For the static content, the <a href="scoping">metalsmith-scoping</a> plugin is used.
 Check out the documentation if you want to customize the way private blocks 
 are rendered.</p>
