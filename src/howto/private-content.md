@@ -5,7 +5,7 @@ subsectionIndex: 5
 private: true
 ---
 
-## Summary
+### Summary
  
 You might have internal or classified parts in your documentation that you
 don't want to publish. For this reason, you can tag resources, methods, pages
@@ -35,7 +35,7 @@ Private content can be added at different levels:
   - In an [API resource](#private-api-resource)
 
 
-## Private Page
+### Private Page
 
 To make a whole page private, add `private: true` to the front-matter of the
 page:
@@ -53,7 +53,7 @@ When building the private site, a little "lock" icon shows up besides the menu
 pointing to that page and it will be completely discarded for the public site.
 
 
-## Private Block Within a Page
+### Private Block Within a Page
 
 To add some private content within a public page, just enclose your content 
 in `<private>` tags as follows:
@@ -80,7 +80,7 @@ Note that:
     documentation (to add private notes to resources descriptions)
 
 
-## Private API Resource
+### Private API Resource
 
 It's equally possible to tag a resource or method in your RAML documentation
 as private. This can be achieved by using the `private` trait. Resources and 
@@ -99,7 +99,7 @@ tagged with a small "lock" icon.
     ...
 ```
 
-## References
+### References
 
 For the static content, the [metalsmith-scoping](scoping) plugin is used.
 Check out the documentation if you want to customize the way private blocks 

@@ -21,6 +21,6 @@ this are visible. To learn more about protecting content, check out the
 </private>
 
 
-[gh-landing]: https://github.com/lotaris/apidoc-seed/src/index.md
+[gh-landing]: https://github.com/lotaris/apidoc-seed/blob/master/src/index.md
 [gh-repo]: https://github.com/lotaris/apidoc-seed
 [howto-private]: /howto/private-content

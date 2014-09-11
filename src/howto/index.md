@@ -16,7 +16,7 @@ We assume that you've already read through the README at the
 going.
 
 
-## Tools
+### Tools
 
  - You can use any text editor to work with markdown and RAML files. 
    [Sublime Text][sublime] has packages for RAML syntax highlighting (as well 
@@ -33,7 +33,7 @@ going.
 [lr]: http://livereload.com/
 
 
-## File Structure
+### File Structure
 
 These are the main folders:
 
@@ -47,7 +47,7 @@ These are the main folders:
    the generated site.
 
 
-## Sources
+### Sources
 
 The site is divided in sections and subsections. For now, the sections are:
  

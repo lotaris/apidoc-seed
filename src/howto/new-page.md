@@ -18,7 +18,7 @@ Pages are located under the `src` folder. Each folder has an `index.md` page,
 subfolders represent the sections of the site.
 
 
-## Adding a main section
+### Adding a main section
 
 To add a new main section, all you have to do is:
 
@@ -30,7 +30,7 @@ To add a new main section, all you have to do is:
  - Write some content
 
 
-## Adding a subsection
+### Adding a subsection
 
 To add a new subsection page, all you have to do is:
 
@@ -46,7 +46,7 @@ notice that a page can be both in the menu and in the submenu, all it takes is
 to give a `subsectionIndex` parameter to a section index page.
    
 
-## Linking to the API reference
+### Linking to the API reference
 
 From a page, you can link to the RAML-generated documentation using a custom 
 schema:
