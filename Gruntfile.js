@@ -1,4 +1,7 @@
 var marked = require('marked');
+var moment = require('moment');
+
+var pkg = require('./package');
 
 module.exports = function (grunt) {
 
@@ -75,7 +78,12 @@ module.exports = function (grunt) {
 				src: 'src',
 				options: {
 					clean: false,
-					metadata: {},
+					metadata: {
+						creationDate: moment().format('LLL'),
+						name: pkg.name,
+						description: pkg.description,
+						version: pkg.version
+					},
 					plugins: {
 
 						'metalsmith-scoping': {

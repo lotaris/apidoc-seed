@@ -48,6 +48,11 @@ html
 					block body
 						div!= contents
 
+		.footer
+			.container
+				p #{name} - #{description}
+				p Version: #{version}  |  Built #{creationDate}
+
 		if minifyAssets
 			script(type="text/javascript", src="/js/global.js")
 		else
