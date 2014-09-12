@@ -78,7 +78,7 @@ module.exports = function (grunt) {
 					metadata: {},
 					plugins: {
 
-						'lotaris-metalsmith-scoping': {
+						'metalsmith-scoping': {
 							scope: scope,
 							marked: markdown,
 							privateProcess: privateProcess,
@@ -98,14 +98,14 @@ module.exports = function (grunt) {
 						'metalsmith-permalinks': {
 							relative: false
 						},
-						'lotaris-metalsmith-links': {
+						'metalsmith-links': {
 							absolute: true,
 							permalinks: true
 						},
-						'lotaris-metalsmith-sections': {
+						'metalsmith-sections': {
 							name: 'subsections'
 						},
-						'lotaris-metalsmith-raml': {
+						'metalsmith-raml': {
 							src: 'src',
 							files: {
 								'myApi': { src: 'api/raml/index.raml', dest: 'api/reference' }
