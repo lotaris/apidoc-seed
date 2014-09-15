@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><title>Add a new API Resource</title><meta charset="utf8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="An API documentation project using Grunt, Metalsmith and RAML."><link rel="stylesheet" href="/apidoc-seed/css/global.css"></head><body><nav id="navbarcollapse" class="navbar navbar-default collapse navbar-collapse"><div class="container"><ul class="nav navbar-nav"><li><a href="/apidoc-seed/">Home</a></li><li><a href="/apidoc-seed/api">API Reference</a></li><li><a href="/apidoc-seed/blog">Blog</a></li><li><a href="/apidoc-seed/support">Support</a></li><li class="active"><a href="/apidoc-seed/howto">HOWTO<i class="glyphicon glyphicon-lock"></i></a></li></ul></div></nav><div class="container"><div class="row"><div class="col-sm-3 col-sm-push-9"><h1>Sections</h1><hr><ul class="nav subnav"><li><a href="/apidoc-seed/howto">Introduction<i class="glyphicon glyphicon-lock"></i></a></li><li><a href="/apidoc-seed/howto/new-page">Add a new Page<i class="glyphicon glyphicon-lock"></i></a></li><li class="active"><a href="/apidoc-seed/howto/new-api-resource">Add a new API Resource<i class="glyphicon glyphicon-lock"></i></a></li><li><a href="/apidoc-seed/howto/private-content">Private Content<i class="glyphicon glyphicon-lock"></i></a></li></ul></div><div class="col-sm-9 col-sm-pull-3"><a id="top"></a><h1>Add a new API Resource</h1><hr><div><p>API resources are described using the <a href="https://lotaris.atlassian.net/wiki/raml.org/spec.html">RAML specification</a>. RAML
+<!DOCTYPE html><html><head><title>Add a new API Resource</title><meta charset="utf8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="An API documentation project using Grunt, Metalsmith and RAML."><link rel="stylesheet" href="/apidoc-seed/css/global.css"></head><body><nav id="navbarcollapse" class="navbar navbar-default collapse navbar-collapse"><div class="container"><ul class="nav navbar-nav"><li><a href="/apidoc-seed/">Home</a></li><li><a href="/apidoc-seed/api">API Reference</a></li><li><a href="/apidoc-seed/blog">Blog</a></li><li><a href="/apidoc-seed/support">Support</a></li><li class="active"><a href="/apidoc-seed/howto">HOWTO<i class="glyphicon glyphicon-lock"></i></a></li></ul></div></nav><div class="container"><div class="row"><div class="col-sm-3 col-sm-push-9"><h1>Sections</h1><hr><ul class="nav subnav"><li><a href="/apidoc-seed/howto">Introduction<i class="glyphicon glyphicon-lock"></i></a></li><li><a href="/apidoc-seed/howto/new-page">Add a new Page<i class="glyphicon glyphicon-lock"></i></a></li><li class="active"><a href="/apidoc-seed/howto/new-api-resource">Add a new API Resource<i class="glyphicon glyphicon-lock"></i></a></li><li><a href="/apidoc-seed/howto/private-content">Work with Private Content<i class="glyphicon glyphicon-lock"></i></a></li></ul></div><div class="col-sm-9 col-sm-pull-3"><a id="top"></a><h1>Add a new API Resource</h1><hr><div><p>API resources are described using the <a href="https://lotaris.atlassian.net/wiki/raml.org/spec.html">RAML specification</a>. RAML
 uses the YAML format which is sensitive to indentation. A simple resource in
 RAML would look like the following:</p>
 <pre><code class="lang-yaml">/myResource:
@@ -27,54 +27,10 @@ RAML would look like the following:</p>
 </code></pre>
 <p>RAML files are located under the <code>src/api/raml</code> folder. Each folder represents 
 a resource, subfolders represent subresources.</p>
-<h3 id="includes">Includes</h3>
-<p>To keep the RAML source code readable (and manageable with concurrent Git contributors), the API documentation is split in many files and uses lots of file inclusions.</p>
-<p>The root file includes all the resources.</p>
-<p><em>index.raml</em>:</p>
-<pre><code class="lang-yaml"><span class="hljs-comment">#%RAML 0.8</span>
----
-title: Index Example
-<span class="hljs-keyword">...</span>
-
-/applications: !include applications/applications.raml
-/products: !include products/products.raml
-<span class="hljs-keyword">...</span>
-</code></pre>
-<p>The resources include their sub-resources:</p>
-<p><em>applications.raml</em>:</p>
-<pre><code class="lang-yaml"><span class="hljs-keyword">...</span>
-post: <span class="hljs-keyword">...</span>
-get: <span class="hljs-keyword">...</span>
-/{applicationId}:
-  get: <span class="hljs-keyword">...</span>
-  put: <span class="hljs-keyword">...</span>
-  delete: <span class="hljs-keyword">...</span>
-  /apiKeys: !include apiKeys/apiKeys.raml
-  /clients: !include clients/clients.raml
-  <span class="hljs-keyword">...</span>
-</code></pre>
-<p>The resource include all their 1+ line content (descriptions, payload examples, etc.).</p>
-<p><em>applications.raml</em>:</p>
-<pre><code class="lang-yaml">description: !<span class="hljs-built_in">include</span> applications.md
-<span class="hljs-built_in">post</span>:
-  ...
-  description: !<span class="hljs-built_in">include</span> application-<span class="hljs-built_in">create</span>.md
-  body:
-    application/json:
-      example: !<span class="hljs-built_in">include</span> application-<span class="hljs-built_in">create</span>-req.sample
-  responses:
-    <span class="hljs-number">201</span>:
-      body:
-        application/json:
-          example: !<span class="hljs-built_in">include</span> application-<span class="hljs-built_in">create</span>-res.sample
-    <span class="hljs-number">422</span>:
-      description: !<span class="hljs-built_in">include</span> application-<span class="hljs-built_in">create</span>-<span class="hljs-number">422.</span>md
-</code></pre>
-<p>This generates a lot of files, is a bit tedious to put in place but it allows to keep the files as readable and manageable as possible.</p>
 <h3 id="traits">Traits</h3>
 <p>Traits are a feature of the RAML spec which allows to factorise some operation definitions. An API operation can “use” a trait and will automatically be enriched with the definitions associated to the trait. Currently there is one trait defined:</p>
 <ul>
-<li><strong>Private</strong>: This is just a marker that results in the resource not being rendered on the public site (see <a href="../public-private">Private vs. public content</a> section).</li>
+<li><strong>Private</strong>: This is just a marker that results in the resource not being rendered on the public site (see <a href="../private-content">Private vs. public content</a> section).</li>
 </ul>
 <p>Using a trait:</p>
 <pre><code class="lang-yaml">/applications
@@ -88,5 +44,8 @@ get: <span class="hljs-keyword">...</span>
           application/json:
             example: !include application-retrieveAll-res.sample
 </code></pre>
-<p>Notice that if you re-define a response code which is already defined in a trait used, your definition will override the definition in the trait. This is not recommended as it reduces the consistency of the documentation… only do it if really necessary.</p>
-</div></div></div></div><div class="footer"><div class="container"><p>apidoc-seed - An API documentation project using Grunt, Metalsmith and RAML.</p><p>Version: 0.0.1  |  Built September 12, 2014 2:31 PM</p></div></div><script type="text/javascript" src="/apidoc-seed/js/global.js"></script></body></html>
+<p>Notice that if you re-define a response code which is already defined in a 
+used trait, your definition will override the definition in the trait. This is
+not recommended as it reduces the consistency of the documentation… only do 
+it if really necessary.</p>
+</div></div></div></div><div class="footer"><div class="container"><p><a href="https://github.com/lotaris/apidoc-seed">apidoc-seed</a>&nbsp;- An API documentation project using Grunt, Metalsmith and RAML.</p><p>Version: 0.0.1  |  Built September 15, 2014 10:15 AM</p></div></div><script type="text/javascript" src="/apidoc-seed/js/global.js"></script></body></html>
