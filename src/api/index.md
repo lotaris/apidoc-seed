@@ -19,9 +19,7 @@ response should have the `Content-Type: application/json` header.
 
 The API uses the standard HTTP verbs to perform CRUD operations (**C**reate, 
 **R**etrieve, **U**pdate, **D**elete) on resources, following standard RESTful
- API practices. Please refer to the [REST Patterns section](/api/restpatterns) 
- for a list of custom patterns implemented in the API.
-
+API practices.
 
 Find below a quick summary of how HTTP verbs are used in the API:
 
@@ -52,7 +50,6 @@ translation purposes.
 
 ```
 HTTP/1.1 400 Bad Request
-X-Pagination: 5;2;7;35
  
 {
   "errors": [

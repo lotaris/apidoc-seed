@@ -39,69 +39,11 @@ RAML files are located under the `src/api/raml` folder. Each folder represents
 a resource, subfolders represent subresources.
 
 
-### Includes
-
-To keep the RAML source code readable (and manageable with concurrent Git contributors), the API documentation is split in many files and uses lots of file inclusions.
-
-The root file includes all the resources.
-
-*index.raml*:
-```yaml
-#%RAML 0.8
----
-title: Index Example
-...
- 
-/applications: !include applications/applications.raml
-/products: !include products/products.raml
-...
-```
-
-The resources include their sub-resources:
-
-*applications.raml*:
-```yaml
-...
-post: ...
-get: ...
-/{applicationId}:
-  get: ...
-  put: ...
-  delete: ...
-  /apiKeys: !include apiKeys/apiKeys.raml
-  /clients: !include clients/clients.raml
-  ...
-```
-
-The resource include all their 1+ line content (descriptions, payload examples, etc.).
-
-
-*applications.raml*:
-```yaml
-description: !include applications.md
-post:
-  ...
-  description: !include application-create.md
-  body:
-    application/json:
-      example: !include application-create-req.sample
-  responses:
-    201:
-      body:
-        application/json:
-          example: !include application-create-res.sample
-    422:
-      description: !include application-create-422.md
-```
-
-This generates a lot of files, is a bit tedious to put in place but it allows to keep the files as readable and manageable as possible.
-
-
 ### Traits
 
 Traits are a feature of the RAML spec which allows to factorise some operation definitions. An API operation can "use" a trait and will automatically be enriched with the definitions associated to the trait. Currently there is one trait defined:
 
- - **Private**: This is just a marker that results in the resource not being rendered on the public site (see [Private vs. public content](../public-private) section).
+ - **Private**: This is just a marker that results in the resource not being rendered on the public site (see [Private vs. public content](../private-content) section).
    
    
 Using a trait:
@@ -119,7 +61,10 @@ Using a trait:
             example: !include application-retrieveAll-res.sample
 ```
 
-Notice that if you re-define a response code which is already defined in a trait used, your definition will override the definition in the trait. This is not recommended as it reduces the consistency of the documentation... only do it if really necessary.
+Notice that if you re-define a response code which is already defined in a 
+used trait, your definition will override the definition in the trait. This is
+not recommended as it reduces the consistency of the documentation... only do 
+it if really necessary.
 
 
 [raml-spec]: https://lotaris.atlassian.net/wiki/raml.org/spec.html

@@ -50,7 +50,9 @@ html
 
 		.footer
 			.container
-				p #{name} - #{description}
+				p 
+					a(href="https://github.com/lotaris/apidoc-seed")=name
+					| &nbsp;- #{description}
 				p Version: #{version}  |  Built #{creationDate}
 
 		if minifyAssets

@@ -1,5 +1,5 @@
 ---
-title: Private Content
+title: Work with Private Content
 template: layout.jade
 subsectionIndex: 5
 private: true
@@ -14,7 +14,7 @@ and parts of a page or description as *private*.
 When compiling the documentation, you can indicate if you wish to include
 private blocks as well. If you do so, it will be included and marked as such 
 with a small "lock" icon. This allows you to maintain all your documentation 
-in a single set of source files while being able to produce multiple builds 
+in a single set of source files while being able to produce multiple builds for
 public and internal usage.
 
 When compiling the documentation, the options are:
@@ -101,7 +101,7 @@ tagged with a small "lock" icon.
 
 ### References
 
-For the static content, the [metalsmith-scoping](scoping) plugin is used.
+For the static content, the [metalsmith-scoping][scoping] plugin is used.
 Check out the documentation if you want to customize the way private blocks 
 are rendered.
 

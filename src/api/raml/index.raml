@@ -12,7 +12,7 @@ traits:
 /myResource:
   description: This is my resource.
   post:
-    description: Create a resource.
+    description: Create a resource. More text is only rendered in the details view of the method.
     body:
       application/json:
         example: |
@@ -23,6 +23,14 @@ traits:
           application/json:
             example: |
               { "id" : 1, "name" : "myResource" }
+    headers:
+      Authorization:
+        description: |
+          A description.
+          <private>
+          Note that you can also add `<private>` blocks in here.
+          </private>
+
   /{myResourceId}:
     get:
       description: Retrieve a resource.

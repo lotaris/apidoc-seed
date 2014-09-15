@@ -68,5 +68,5 @@ project's [Gruntfile][gh-gruntfile].
 
 
 [md]: http://daringfireball.net/projects/markdown/syntax
-[gh-gruntfile]: https://github.com/lotaris/apidoc-seed/Gruntfile.js
+[gh-gruntfile]: https://github.com/lotaris/apidoc-seed/blob/master/Gruntfile.js
 [metalsmith-raml]: https://github.com/lotaris/metalsmith-raml#files
