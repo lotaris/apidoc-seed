@@ -2,6 +2,8 @@
 
 *A boilerplate project for quickly getting your RAML documentation published.*
 
+### [Live Site](https://lotaris.github.com/apidoc-seed)
+
 This is a generator that compiles [Markdown][md] and [RAML][raml] files into a
 static site. The following [Node.js][node] stack is used:
 
