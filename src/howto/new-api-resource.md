@@ -67,4 +67,4 @@ not recommended as it reduces the consistency of the documentation... only do
 it if really necessary.
 
 
-[raml-spec]: https://lotaris.atlassian.net/wiki/raml.org/spec.html
+[raml-spec]: http://raml.org/spec.html
