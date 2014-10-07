@@ -106,7 +106,7 @@ module.exports = function (grunt) {
 						'metalsmith-permalinks': {
 							relative: false
 						},
-						'metalsmith-links': {
+						'metalsmith-filepath': {
 							absolute: true,
 							permalinks: true
 						},
