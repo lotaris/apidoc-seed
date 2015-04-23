@@ -1,15 +1,13 @@
-extends layout
+extends layout-raml
 
 append menu
-	h1 Resources
-	hr
+	a(href='/') Overview
+	a(href='/api/reference') Resources
 	if resources
-		ul.nav.subnav
-			each resource in resources
-				li
-					a(href='/api/reference/##{resource.uniqueId}')
-						span=resource.displayName ? resource.displayName : resource.relativeUri
-						if resource.isPrivate
-							i.glyphicon.glyphicon-lock
+		each resource in resources
+			a.level-1(href='/api/reference/##{resource.uniqueId}')
+				span=resource.displayName ? resource.displayName : resource.relativeUri
+				if resource.isPrivate
+					i.glyphicon.glyphicon-lock
 	else
 		label Could not find resources list.

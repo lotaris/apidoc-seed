@@ -80,25 +80,6 @@ Note that:
     documentation (to add private notes to resources descriptions)
 
 
-### Private API Resource
-
-It's equally possible to tag a resource or method in your RAML documentation
-as private. This can be achieved by using the `private` trait. Resources and 
-methods that are marked private won't show up in the public site and are
-tagged with a small "lock" icon.
-
-```yaml
-/applications
-  is: [private]
-  ...
-
-/orders
-  ...
-  patch:
-    is: [private]
-    ...
-```
-
 ### References
 
 For the static content, the [metalsmith-scoping][scoping] plugin is used.

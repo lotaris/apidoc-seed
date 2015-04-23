@@ -1,10 +1,12 @@
 doctype html
 html
 	head
-		title API Doc Seed
+		title API in details
+
 		meta(charset='utf8')
 		meta(name="viewport", content="width=device-width, initial-scale=1")
 		meta(name='description', content= description)
+
 		if minifyAssets
 			link(rel="stylesheet", href="/css/global.css")
 		else
@@ -35,13 +37,18 @@ html
 									| #{s.sectionName}
 									if s.private
 										i.glyphicon.glyphicon-lock
-		.container
-			.row
-				.col-sm-3.col-sm-push-9
+		.api-container
+			.api-content
+				a(id="top")
+				h1= title
+				hr
+				block body
+					div!= contents
+
+			.api-menu
+				.api-menu-content.affix-top(data-spy='affix', data-offset-top='105')
 					block menu
 						if section && subsections[section]
-							h1 Sections
-							hr
 							ul.nav.subnav
 								for subsection in subsections[section]
 									li(class="#{ title == subsection.title ? 'active' : '' }")
@@ -49,12 +56,6 @@ html
 											| #{subsection.title}
 											if subsection.private
 												i.glyphicon.glyphicon-lock
-				.col-sm-9.col-sm-pull-3
-					a(id="top")
-					h1= title
-					hr
-					block body
-						div!= contents
 
 		.footer
 			.container

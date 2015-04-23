@@ -1,170 +1,199 @@
-mixin resource(resource)
-	.panel.panel-white
-		.panel-heading
-			h4.panel-title
-				// collapsed "buttons" (on the right side)
-				a.block.collapsed(data-toggle='collapse', href='#panel_#{resource.uniqueId}')
-					if resource.methods
-						each method in resource.methods
-							span.badge(id='#{method.method}_#{resource.uniqueId}', class="badge_#{method.method}") #{method.method} #{helpers.lock(method.securedBy)} !{helpers.lock(method.isPrivate || resource.isPrivate)}
-						span.parent=resource.parentUrl
-						| #{resource.relativeUri}
-						| !{helpers.lock(resource.isPrivate)}
-		.panel-collapse.collapse(id='panel_#{resource.uniqueId}')
-			.panel-body
-				// extended "buttons" (list)
-				.list-group
-					if resource.methods
-						each method in resource.methods
-							a.list-group-item(href='#', data-toggle='modal', data-target='##{resource.uniqueId}_#{method.method}')
-								span.badge(class='badge_#{method.method}') #{method.method} #{helpers.lock(method.securedBy)} !{helpers.lock(method.isPrivate || resource.isPrivate)}
-								span!=method.descriptionShort
+mixin minConstraint(minimum, maximum)
+	.constraint
+		if minimum !== undefined || maximum !== undefined
+			if minimum === maximum
+				| must be #{minimum}
+			else if minimum !== undefined && maximum !== undefined
+				| between #{minimum} and #{maximum}
+			else if minimum !== undefined
+				| must be greater or equal to #{minimum}
+			else
+				| must be smaller than or equal to #{maximum}
+
+mixin constraints(item)
+	.constraints
+		if item.required || item.repeat
+			.constraint
+				if item.required
+					.badge.badge-required required
+				if item.repeat
+					.badge.badge-repeat repeat
+
+		if item.minimum || item.maximum
+			+minConstraint(item.minimum, item.maximum)
+
+mixin namedParameters(namedParameters)
+	.flex-table
+		.flex-table-headers.no-left-border
+			.flex-table-header Name
+			.flex-table-header.center Type
+			.flex-table-header.s3 Constraints
+			.flex-table-header.s3 Description
+			.flex-table-header.s3 Example
+		each param in namedParameters
+			.flex-table-row.no-left-border
+				.flex-table-cell= param.displayName
+
+				.flex-table-cell.center
+					if param.type
+						= param.type
+					else
+						| unknown
+
+				.flex-table-cell.s3
+					+constraints(param)
+
+				.flex-table-cell.s3!= helpers.marked(param.description)
+				.flex-table-cell.s3!= helpers.marked(param.example)
+
+mixin namedParametersSection(uid, verb, sectionType, title, namedParameters)
+	.method-section
+		h3(data-toggle='collapse', data-target='##{uid}-#{verb}-#{sectionType}')= title
+		.method-section-content
+			.panel-collapse.collapse(id='#{uid}-#{verb}-#{sectionType}')
+				+namedParameters(namedParameters)
+
+mixin example(example, uid)
+	.method-section
+		h3(data-toggle='collapse', data-target='##{uid}') Example
+
+		.method-section-content.panel-collapse.collapse.in(id='#{uid}')
+			pre!= helpers.highlight(example)
+
+mixin responsesSummary(responses)
+	.method-section
+		h3.no-action Summary
+		.method-section-content
+			.flex-table
+				.flex-table-headers.no-left-border
+					.flex-table-header.center Status Code
+					.flex-table-header.s4 Description
+
+				each response, key in responses
+					.flex-table-row.no-left-border
+						.flex-table-cell.center
+							a(href='http://httpstatus.es/#{key}', target='_blank')=key
+						.flex-table-cell.s4!= helpers.marked(response.description)
+
+mixin resource(resource, level)
+	.resource(class='resource-level-#{level}', id='#{resource.uniqueId}')
+		h4.resource-title
+			.resource-title-uri
+				a.toggle(data-ref='##{resource.uniqueId} > .collapse-level-#{level}')
+					span.parent=resource.parentUrl
+					span.child=resource.relativeUri
+
+			if resource.description
+				.resource-title-description
+					span= helpers.shorten(resource.description)
+					if helpers.isShortable(resource.description)
+						a.description-link(data-toggle='collapse', data-target='##{resource.uniqueId}-description') show full description.
+
+			.resource-title-badges
+				if resource.methods
+					each method in resource.methods
+						a(data-toggle='collapse', data-target='##{resource.uniqueId}-#{method.method}')
+							span.badge(id='#{method.method}_#{resource.uniqueId}', class="badge-#{method.method}") #{method.method}
+
+		if resource.description && helpers.isShortable(resource.description)
+			.description.panel-collapse.collapse(id='#{resource.uniqueId}-description')!= helpers.marked(resource.description)
 
 		if resource.methods
 			each method in resource.methods
-				.modal.fade(id='#{resource.uniqueId}_#{method.method}')
-					.modal-dialog
-						.modal-content
-							.modal-header
-								button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
-								h4.modal-title
-									span.badge(class='badge_#{method.method}') #{method.method} #{helpers.lock(method.securedBy)} !{helpers.lock(method.isPrivate || resource.isPrivate)}
-									| &nbsp;&nbsp;
-									span.parent=resource.parentUrl
-									| #{resource.relativeUri}
-							.modal-body
-								if method.is
-									each is in method.is
-										if is.protected
-											.alert.alert-warning: p: small
-												|Scope required:&nbsp;
-												b= is.protected.scope
+				.panel-collapse.collapse-method.collapse(id='#{resource.uniqueId}-#{method.method}', class="collapse-level-#{level}", data-ref='##{resource.uniqueId} > .collapse-level-#{level}')
+					.method(class="method-#{method.method}")
+						h4.method-title
+							span.verb(class='badge-#{method.method}') #{method.method}
+							| &nbsp;&nbsp;
+							span.url #{resource.parentUrl}#{resource.relativeUri}
 
-								// Nav tabs
-								ul.nav.nav-tabs
-									li.active: a(href='##{resource.uniqueId}_#{method.method}_description', data-toggle='tab') Description
-									li: a(href='##{resource.uniqueId}_#{method.method}_request', data-toggle='tab') Request
-									if method.responses
-										li: a(href='##{resource.uniqueId}_#{method.method}_response', data-toggle='tab') Response
+						.method-body
+							.description!= helpers.marked(method.description)
 
-								// Tab panes
-								.tab-content
-									.tab-pane.active(id='#{resource.uniqueId}_#{method.method}_description')
-										span!=method.description
-										- if (method.is && ~method.is.indexOf('batchCreationFriendly'))
-											.well You can also post a list of objects instead of a single object to this
-												| resource. For more details, see <a href="/api/restpatterns/#batch-creation">Batch
-												| Creation</a>.
-									.tab-pane(id='#{resource.uniqueId}_#{method.method}_request')
-										if resource.allUriParameters && resource.allUriParameters.length > 0
-											h3 URI Parameters
-											ul
-												each param in resource.allUriParameters
-													li: strong=param.displayName
-														|  #{param.type}
+							.method-section
+								h3(data-toggle='collapse', href='##{resource.uniqueId}-#{method.method}-request') Request
 
-										if method.queryParameters
-											h3 Query Parameters
-											ul
-												each param, key in method.queryParameters
-													li.markdown
-														strong=key
-														em
-															if param.required && param.required == 'true'
-																|  required
-															if param.enum
-																|  one of (#{param.enum})
-															else
-																|  (#{param.type})
-															if param.default
-																|  &mdash; Default: <code>#{param.default}</code>
+								.method-section-content.panel-collapse.collapse.in(id='#{resource.uniqueId}-#{method.method}-request')
+									if resource.allUriParameters && resource.allUriParameters.length > 0
+										+namedParametersSection(resource.uniqueId, method.method, 'req-uri-params', 'URI Parameters', resource.allUriParameters)
 
-														| !{param.description}
-														if param.schema
-															p: small
-																strong Schema:
-																code!=param.schema
+									if method.queryParameters
+										+namedParametersSection(resource.uniqueId, method.method, 'req-query-params', 'Query Parameters', method.queryParameters)
+										//ul
+										//	each param, key in method.queryParameters
+										//				em
+										//					if param.enum
+										//						|  one of (#{param.enum})
+										//					else
+										//						|  (#{param.type})
+										//					if param.default
+										//						|  &mdash; Default: <code>#{param.default}</code>
+										//
 
-														if param.example
-															p: small
-																strong Example:
-																code!=param.example
+									if method.headers
+										+namedParametersSection(resource.uniqueId, method.method, 'req-headers', 'Headers', method.headers)
 
-										if method.headers
-											h3 Headers
-											ul
-												each header, headername in method.headers
-													li.markdown
-														strong=(header.displayName ? header.displayName : headername)
-														em
-															if header.required
-																|  required
-															if header.enum
-																|  one of (#{header.enum})
-															else
-																|  (#{header.type})
-														if header.description
-															| !{header.description}
+									if method.body
+										.method-section
+											h3.no-action Body
 
-										if method.body
-											h3 Body
 											each b, key in method.body
-												p: strong Type: #{key}
-												if formParameters
-													strong Form Parameters
-													ul
-														each param in formParameters
-															li.markdown
-																strong=key
-																em
-																	if param.required
-																		|  required
-																	if param.enum
-																		|  one of (#{param.enum})
-																	else
-																		|  (#{param.type})
-																| !{description}
-																if param.schema
-																	p:small
-																		strong Schema:
-																		code!=param.schema
-																if param.example
-																	p: small
-																		strong Example:
-																		code!=param.example
 												if b.schema
-													strong Schema:
-													pre!=helpers.highlight(b.schema)
-
+													+jsonSchema(b.schema, resource.uniqueId + '-' + method.method + '-request')
 												if b.example
-													strong Example:
-													pre!=helpers.highlight(b.example)
+													+example(b.example, resource.uniqueId + '-' + method.method + '-reques-body-example')
 
-									if method.responses
-										.tab-pane(id='#{resource.uniqueId}_#{method.method}_response')
-											each response, key in method.responses
-												h2 HTTP status code&nbsp;
-													a(href='http://httpstatus.es/#{key}', target='_blank')=key
-												| !{response.description}
+												//if formParameters
+												//	strong Form Parameters
+												//	ul
+												//		each param in formParameters
+												//			li.markdown
+												//				strong=key
+												//				em
+												//					if param.required
+												//						|  required
+												//					if param.enum
+												//						|  one of (#{param.enum})
+												//					else
+												//						|  (#{param.type})
+												//				| !{description}
+												//				if param.example
+												//					p: small
+												//						strong Example:
+												//						code!=param.example
+												//				if param.schema
+												//					p:small
+												//						strong Schema:
+												//						code!=param.schema
 
-												if response.headers
-													h3 Headers
-													ul
-														each header, headername in response.headers
-															li: strong=headername
-																| : #{header.type}
-												if response.body
-													h3 Body
-													each rb, contentType in response.body
-														p
-															strong Type: #{contentType}
-														if rb && rb.schema
-															strong Schema:
-															pre!=helpers.highlight(rb.schema)
-														if rb && rb.example
-															strong Example:
-															pre!=helpers.highlight(rb.example)
-	//- recursively traverse sub-resources
-	if resource.resources
-		each subResource in resource.resources
-			+resource(subResource)
+							if method.responses
+								.method-section
+									h3(data-toggle='collapse', href='##{resource.uniqueId}-#{method.method}-response') Response
+
+									.method-section-content.panel-collapse.collapse(id='#{resource.uniqueId}-#{method.method}-response')
+										+responsesSummary(method.responses)
+
+										each response, key in method.responses
+											if response.headers || response.body
+												.method-section
+													h3.no-action HTTP status code #{key}
+
+													if response.headers
+														+namedParametersSection(resource.uniqueId, method.method, 'res-headers', 'Headers', response.headers)
+
+													if response.body
+														.method-section
+															h3.no-action Body
+
+															each rb, contentType in response.body
+																if rb && rb.schema
+																	+jsonSchema(rb.schema, resource.uniqueId + '-' + method.method + '-' + key + '-response')
+
+																if rb && rb.example
+																	+example(rb.example, resource.uniqueId + '-' + method.method + '-response-' + key + '-body-example')
+
+
+		//- recursively traverse sub-resources
+		if resource.resources
+			each subResource in resource.resources
+				+resource(subResource, level + 1)

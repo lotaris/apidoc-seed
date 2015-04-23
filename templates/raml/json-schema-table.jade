@@ -1,0 +1,196 @@
+- var space = ' ';
+
+mixin readWrite(property)
+	if property.readOnly
+		li
+			em read-only
+			| !{space}
+	if property.writeOnly
+		li
+			em write-only
+			| !{space}
+
+mixin unique(property)
+	if property.unique
+		li
+			strong
+				em unique
+			| !{space}
+
+mixin pattern(property)
+	if property.pattern
+		li
+			code(style="white-space: nowrap;")
+				| /
+				= property.pattern
+				| /
+
+mixin format(property)
+	if property.format == 'date-time'
+		li
+			a(href='http://en.wikipedia.org/wiki/ISO_8601') ISO-8601 date
+	else if property.format == 'uri'
+		li
+			| must be a valid URL
+
+mixin minMax(property)
+	if property.minimum || property.maximum
+		li
+			if property.minimum !== undefined || property.maximum !== undefined
+				if property.minimum === property.maximum
+					| must be
+					= property.minimum
+				else if property.minimum !== undefined && property.maximum !== undefined
+					| between
+					= property.minimum
+					if property.exclusiveMinimum
+						|  (exclusive)
+					else
+						|  (inclusive)
+					|  and
+					= property.maximum
+					if property.exclusiveMaximum
+						|  (exclusive)
+					else
+						|  (inclusive)
+				else if property.minimum !== undefined
+					| must be
+					if property.exclusiveMinimum
+						| greater than
+					else
+						| greater than or equal to
+					= property.minimum
+				else
+					| must be
+					if property.exclusiveMaximum
+						| smaller than
+					else
+						| smaller than or equal to
+					= property.maximum
+
+mixin minMaxItems(property)
+	if property.minItems || property.maxItems
+		li
+			if property.minItems && property.maxItems
+				if property.minItems === 1
+					| exactly 1 item
+				else
+					| exactly
+					= property.minItems
+					|  items
+			else if property.minItems
+				if property.minItems === 1
+					| at least 1 item
+				else
+					| at least
+					= property.minItems
+					|  items
+			else if property.maxItems
+				if property.maxItems === 1
+					| at most 1 item
+				else
+					| at most
+					= property.maxItems
+					|  items
+
+mixin minMaxLength(property)
+	if property.minLength && property.maxLength
+		li
+			if property.minLength === property.maxLength
+				= property.minLength
+				if property.minLength === 1
+					|  char
+				else
+					|  chars
+			else
+				= property.minLength
+				| -
+				= property.maxLength
+				|  chars
+
+mixin enum(property)
+	if property.enum
+		li
+			if property.enum.length === 1
+				| must be
+				code= property.enum[0]
+			else
+				| one of
+				each value, i in property.enum
+					if i != 0
+						| ,
+					else
+						| !{space}
+					code= value
+
+
+mixin constraints(property, name, required)
+	if required && required.indexOf(name) > -1
+		.badge.badge-required required
+
+	ul
+		+readWrite(property)
+		+unique(property)
+		+pattern(property)
+		+format(property)
+		+minMax(property)
+		+minMaxLength(property)
+		+enum(property)
+		+minMaxItems(property)
+
+mixin propertyRow(name, property, required, level)
+	.flex-table-row(class='level-#{level}')
+		.flex-table-cell.property= name
+		.flex-table-cell.center= property.type
+		.flex-table-cell.s2
+			+constraints(property, name, required)
+		.flex-table-cell.s2!= helpers.marked(property.description)
+
+	if property.type == 'object'
+		+properties(property, level + 1)
+
+mixin properties(schema, level)
+	if schema.properties
+		each property, name in schema.properties
+			+propertyRow(name, property, schema.required, level)
+
+	if schema.patternProperties
+		each property, name in schema.patternProperties
+			+propertyRow(name, property, schema.required, level)
+
+mixin jsonSchemaTable(schema)
+	.jsonSchemaLevel
+		if schema.type == 'array'
+			if schema.title
+				h4= schema.title
+			if schema.description
+				p= helpers.marked(schema.description)
+			+jsonSchemaTable(schema.items)
+		else
+			if schema.properties || schema.patternProperties
+				.flex-table
+					.flex-table-headers.no-left-border
+						.flex-table-header Property
+						.flex-table-header.center Type
+						.flex-table-header.s2 Constraints
+						.flex-table-header.s2 Description
+
+					if schema.title || schema.description
+						.flex-table-row.no-left-border
+							.flex-table-cell.center
+								h2= schema.title
+								if schema.description
+									div!= helpers.marked(schema.description)
+
+					+properties(schema, 0)
+
+		//- itemSchemas = []
+		//				if schema.properties
+		//					+properties(schema.properties, schema.required, 1)
+		//				if schema.patternProperties
+		//					+properties(schema.patternProperties, [])
+
+				//if itemSchemas.length
+				//	each itemSchema in itemSchemas
+				//		+jsonSchemaTable(itemSchema)
+

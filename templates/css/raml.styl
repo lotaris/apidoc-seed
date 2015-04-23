@@ -1,111 +1,323 @@
+.affix
+  padding-top 10px
+  top 0
+
+/*.affix-top*/
+  /*top 90px*/
 
 .markdown *:last-child
-	margin-bottom 0
+  margin-bottom 0
 
+.api-container
+  flex-direction row
+  display flex
+  padding 20px
+
+  .api-content
+    overflow scroll
+    margin 20px
+    flex 6
+
+  .api-menu
+    margin 20px
+    flex 1
+
+    .api-menu-content
+      flex-direction column
+      display flex
+
+      a
+        margin-bottom 6px
+        font-weight bold
+        font-size 1.3em
+        flex 1
+
+        &.level-1
+          margin-bottom 3px
+          margin-left 20px
+
+pre
+  overflow scroll
 
 .parent
-	color #999
+  color #999
 
-.list-group-item
-	& > .badge
-		float none
-		margin-right 6px
+.child
+  color #000
 
-.panel-title
-	& > .block
-		& > .badge
-			float right
-			margin-left 5px
+.toggle-all
+  i
+    cursor pointer
 
-.badge
-	border-radius 0
-	text-transform uppercase
-	min-width 70px
-	font-weight normal
-	color #f3f3f6
-	line-height normal
+.badge-required
+  background-color #b92c31
+
+.badge-repeat
+  background-color #3b4de2
+
+res(i, max)
+  if i < max
+    & > .resource
+      background lighten(#EEE, i * 35%)
+      border-left-color lighten(#EEE, i * 35%)
+
+      .resource-title
+        background-color lighten(#EEE, i * 35%)
+
+        .resource-title-description
+          margin-left i * -10px
+
+      res(i + 1, max)
 
 
-.block
-	display block
-	.badge
-		visibility hidden
-	&.collapsed
-		.badge
-			visibility visible
+.method
+  border-left 10px solid darken(#EEE, 20%)
+  flex-direction column
+  background #EEE
+  display flex
 
-.block .glyphicon, .panel-heading > h3 .glyphicon
-		font-size 12px
-		margin-left 5px
-		color #555
+  p
+    margin 0
 
-.panel-warning .panel-heading > h3 .glyphicon
-		font-size 12px
-		margin-left 5px
-		color #8a6d3b
+  table
+    margin-bottom 0
 
-.badge > .glyphicon
-	color white
-	margin-left 5px
-	margin-right 1px
+    td
+      background-color transparent !important
 
-.badge_get
-	background-color #63a8e2
+      .constraints
+        display flex
+        flex-direction column
 
-.badge_post
-	background-color #6cbd7d
+        .constraint
+          margin 3px
+          flex 1
 
-.badge_put
-	background-color #22bac4
+    pre
+      background-color transparent
+      line-height 24px
+      margin-bottom 0
+      border none
+      padding 0
 
-.badge_delete
-	background-color #d26460
+    .center
+      text-align center
 
-.list-group, .panel-group
-	margin-bottom 0
+  .method-title
+    align-items baseline
+    flex-direction row
+    display flex
+    margin 0
+    flex 1
 
-.panel-group
-	.panel
-		& + .panel-white
-			margin-top 0
-	.panel-white
-		border-bottom 1px solid #F5F5F5
-		border-radius 0
+    span.verb
+      text-transform uppercase
+      font-weight bold
+      padding 10px 0
+      font-size 1em
+      color #f3f3f6
+      display flex
 
-.panel-white
-	&:last-child
-		border-bottom-color white
-		-webkit-box-shadow none
-		box-shadow none
-	.panel-heading
-		background white
+    span.url
+      display flex
+      color black
 
-.tab-pane
-	ul
-		padding-left 2em
-	h2
-		font-size 1.2em
-		padding-bottom 4px
-		border-bottom 1px solid #ddd
-	h3
-		font-size 1.1em
+  .description
+    padding 15px 0
+    margin 0
 
-.tab-content
-	border-left 1px solid #ddd
-	border-right 1px solid #ddd
-	border-bottom 1px solid #ddd
-	padding 10px
+  .method-body
+    .method-section
+      flex-direction column
+      display flex
 
-.resource-description
-	border-bottom 1px solid #ddd
-	background #fcfcfc
-	padding 15px 15px 0 15px
-	margin -15px -15px 10px -15px
+      h3
+        font-size 1.1em
+        cursor pointer
+        padding 10px
+        margin 0
 
-.modal .well
-	margin-bottom 0
+        &.no-action
+          cursor inherit
 
-.panel-warning
-	.panel-footer
-		border-top solid 1px #faebcc
-	
+      pre
+        margin-bottom 0
+        border none
+
+  ul.nav-tabs
+    border-bottom-width 3px
+
+    li
+      margin-bottom 0
+
+      a
+        border none !important
+        border-radius 0
+        outline 0
+
+  .tab-content
+    padding 0
+
+.resource
+  border-top 1px solid darken(#EEE, 20%)
+  flex-direction column
+  padding-left 10px
+  background #EEE
+  display flex
+
+  &:last-child.resource-level-1
+    border-bottom 1px solid darken(#EEE, 20%)
+
+  res(1, 5)
+
+  .resource-title
+    background-color #EEE
+    padding 10px 0
+    display flex
+    margin 0
+    align-items center
+
+    a
+      text-decoration none !important
+      cursor pointer
+
+    .resource-title-uri, .resource-title-badges
+      flex 1
+
+    .resource-title-description
+      font-weight normal
+      font-size .8em
+      flex 3
+
+      .description-link
+        padding-left 5px
+
+    .badge
+      text-transform uppercase
+      line-height normal
+      font-weight bold
+      margin-right 5px
+      border-radius 0
+      min-width 70px
+      color #f3f3f6
+      padding 5px
+      float right
+
+.flex-table
+  flex-direction column
+  display flex
+
+  .left
+    text-align left
+
+  .center
+    text-align center
+
+  .right
+    text-align right
+
+  for i in 2..10
+    .s{i}
+      flex i !important
+
+  .flex-table-headers
+    display flex
+
+    .flex-table-header
+      border-left-width 1px
+      border-left-style solid
+      font-size 1.2em
+      font-weight bold
+      padding 10px
+      flex 1
+
+  .no-left-border
+    .flex-table-header:first-of-type
+      border-left none
+
+  .flex-table-row
+    display flex
+
+    .flex-table-cell
+      border-bottom 1px solid black
+      border-left 1px solid black
+      border-top 1px solid black
+      justify-content center
+      flex-direction column
+      margin-top -1px
+      display flex
+      padding 10px
+      flex 1
+
+      .badge
+        align-self flex-start
+
+      ul
+        margin 0
+
+      h2
+        font-weight bold
+        font-size 1.2em
+        padding 0
+        margin 0
+
+    &:last-of-type
+      .flex-table-cell
+        border-bottom none
+
+  .no-left-border
+    .flex-table-cell:first-of-type
+      border-left none
+
+  for i in 0..5
+    .flex-table-row.level-{i}
+
+      .property
+        margin-right i * -10px
+        margin-left i * 10px
+
+methods = {
+  get: #63a8e2,
+  post: #6cbd7d,
+  patch: #bd9368,
+  put: #22bac4,
+  delete: #d26460
+}
+
+m-section(i, max, v)
+  if i < max
+    .method-section
+      h3
+        margin-left i * 10px
+        border-bottom 1px solid v
+        background lighten(v, 35%)
+
+      .method-section-content
+        margin-left i * 10px
+
+      m-section(i + 1, max, lighten(v, 35%))
+
+
+for k, v in methods
+  .badge-{k}
+    background-color v
+
+  .method-{k}
+    border-left-color v
+    background lighten(v, 85%)
+
+    .method-title
+      background v
+
+    .method-body
+      m-section(0, 4, v)
+
+      .description
+        border-bottom 3px solid v
+        padding-left 10px
+
+    ul.nav-tabs
+      border-bottom 1px solid v
+
+    .flex-table-header, .flex-table-cell
+      border-color v !important

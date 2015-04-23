@@ -1,0 +1,36 @@
+include json-schema-table.jade
+
+mixin jsonSchema(rawSchema, selectorPrefix)
+	.method-section
+		h3(data-toggle="collapse", href="##{selectorPrefix}-struct-collapse") JSON Schema Structure
+
+		.method-section-content.panel-collapse.collapse(id="#{selectorPrefix}-struct-collapse")
+			+jsonSchemaTable(JSON.parse(rawSchema))
+
+	.method-section
+		h3(data-toggle="collapse", href="##{selectorPrefix}-raw-collapse") Raw JSON Schema
+
+		.method-section-content.panel-collapse.collapse(id="#{selectorPrefix}-raw-collapse")
+			pre!= helpers.highlight(rawSchema)
+
+	//.method-section-content.panel-collapse.collapse.in(id="#{selectorPrefix}-collapse")
+	//		ul.nav.nav-tabs.json-schema-tabs(role='tablist')
+	//			li.active
+	//				a(href="##{selectorPrefix}_pretty", role="tab", data-toggle="tab") Structure
+	//			li
+	//				a(href="##{selectorPrefix}_raw", role="tab", data-toggle="tab") Raw Schema
+	//
+	//		.tab-content
+	//			.tab-pane.active.fade.in(id="#{selectorPrefix}_pretty")
+	//				+jsonSchemaTable(JSON.parse(rawSchema))
+	//				//small
+	//				//	p
+	//				//		| Property names in
+	//				//		strong bold
+	//				//		|  indicate that the property is required. Properties marked as
+	//				//		em read-only
+	//				//		|  are provided by the server once a resource has been created or is in the correct state. Properties marked as
+	//				//		em write-only
+	//				//		|  can be given in requests but are never shown in responses for security reasons.
+	//			.tab-pane.fade(id="#{selectorPrefix}_raw")
+	//				pre!= helpers.highlight(rawSchema)

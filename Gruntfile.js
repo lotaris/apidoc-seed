@@ -1,25 +1,18 @@
-var marked = require('marked');
-var moment = require('moment');
-
-var pkg = require('./package');
+var
+	_ = require('underscore'),
+	helpers = require('./utils/jade.helpers'),
+	moment = require('moment'),
+	pkg = require('./package');
 
 module.exports = function (grunt) {
-
-	var baseUrl = (grunt.option('baseUrl') || '').replace(/\/$/, '') + '/';
-	var minifyAssets = grunt.option('minifyAssets');
-	var scope = grunt.option('private') ? 'private' : 'public';
-
-	var markdown = {
-		gfm: true,
-		smartypants: true,
-		highlight: function(code) {
-			return  require('highlight.js').highlightAuto(code).value;
-		}
-	};
+	var
+		baseUrl = (grunt.option('baseUrl') || '').replace(/\/$/, '') + '/',
+		minifyAssets = grunt.option('minifyAssets'),
+		scope = grunt.option('private') ? 'private' : 'public';
 
 	var privateProcess = function(contents) {
 		return contents.replace(/[\r\n]<private>([\s\S]*?)<\/private>/gi, function(match, md) {
-			return '<div class="private"><div class="private--vertical-bar"><span class="glyphicon glyphicon-lock"></span></div>' + marked(md, markdown) + '</div>';
+			return '<div class="private"><div class="private--vertical-bar"><span class="glyphicon glyphicon-lock"></span></div>' + helpers.helpers.marked(md) + '</div>';
 		});
 	};
 
@@ -85,10 +78,9 @@ module.exports = function (grunt) {
 						version: pkg.version
 					},
 					plugins: {
-
 						'metalsmith-scoping': {
 							scope: scope,
-							marked: markdown,
+							marked: helpers.markedConfig,
 							privateProcess: privateProcess,
 							publicProcess: publicProcess
 						},
@@ -102,7 +94,7 @@ module.exports = function (grunt) {
 								sortBy: 'date'
 							}
 						},
-						'metalsmith-markdown': markdown,
+						'metalsmith-markdown': helpers.markedConfig,
 						'metalsmith-permalinks': {
 							relative: false
 						},
@@ -119,18 +111,15 @@ module.exports = function (grunt) {
 								'myApi': { src: 'api/raml/index.raml', dest: 'api/reference' }
 							},
 							section: 'api',
-							scope: scope,
 							template: {
 								engine: 'jade',
 								file: 'templates/raml/template.jade',
 								params: {
 									pretty: true
 								},
+								helpers: helpers.helpers,
 								minifyAssets: minifyAssets
-							},
-							marked: markdown,
-							privateProcess: privateProcess,
-							publicProcess: publicProcess
+							}
 						},
 						'metalsmith-templates': {
 							engine: 'jade',
@@ -146,23 +135,23 @@ module.exports = function (grunt) {
 			html: {
 				src: [ 'build/**/*.html' ],
 				overwrite: true,
-				replacements: [ 
-					{ from: /href="\//g, to: 'href="' + baseUrl }, 
-					{ from: /src=\"\//g, to: 'src="' + baseUrl } 
+				replacements: [
+					{ from: /href="\//g, to: 'href="' + baseUrl },
+					{ from: /src=\"\//g, to: 'src="' + baseUrl }
 				]
 			},
 			css: {
 				src: [ 'build/**/*.css' ],
 				overwrite: true,
-				replacements: [ 
-					{ from: /url\("\//g, to: 'url(\"' + baseUrl }, 
-					{ from: /url\('\//g, to: 'url(\'' + baseUrl } 
+				replacements: [
+					{ from: /url\("\//g, to: 'url(\"' + baseUrl },
+					{ from: /url\('\//g, to: 'url(\'' + baseUrl }
 				]
 			},
 			googleFonts: {
 				src: [ 'build/**/*.html' ],
 				overwrite: true,
-				replacements: [ 
+				replacements: [
 					{ from: /http:\/\/fonts\.googleapis\.com/g, to: "https://fonts.googleapis.com" } ]
 			}
 		},

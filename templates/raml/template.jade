@@ -1,23 +1,16 @@
 include resource.jade
+include json-schema.jade
 
 extends ../api
 
 block body
 	.page-header
-		small 
+		small
 		b Endpoint: &nbsp;&nbsp;
-		= baseUri
+		= apiUrl
+		a.pull-right.toggle-all(data-ref='.collapse-method')
+			i.glyphicon.glyphicon-plus
+			i.glyphicon.glyphicon-minus(style='display: none;')
 
 	each mainResource in resources
-		.panel.panel-default
-			.panel-heading
-				h3.panel-title(id=mainResource.uniqueId)
-					| #{mainResource.displayName ? mainResource.displayName : mainResource.relativeUri}
-					| !{helpers.lock(mainResource.isPrivate)}
-			.panel-body
-				if mainResource.description
-					.resource-description!=mainResource.description
-				.panel-group
-					+resource(mainResource)
-			.panel-footer
-				a(href="#top").btn Back to top
+		+resource(mainResource, 1)
