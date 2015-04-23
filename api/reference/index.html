@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>List of resources</title>
+    <title>API in details</title>
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="An API documentation project using Grunt, Metalsmith and RAML.">
-    <link rel="stylesheet" href="/apidoc-seed/css/global.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/raml.css">
+    <link rel="stylesheet" href="/css/highlight.github.min.css">
   </head>
   <body>
     <nav role="navigation" class="navbar navbar-default">
@@ -15,180 +18,130 @@
         </div>
         <div id="navbarcollapse" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/apidoc-seed/">Home</a></li>
-            <li class="active"><a href="/apidoc-seed/api">API Reference</a></li>
-            <li><a href="/apidoc-seed/blog">Blog</a></li>
-            <li><a href="/apidoc-seed/support">Support</a></li>
-            <li><a href="/apidoc-seed/howto">HOWTO<i class="glyphicon glyphicon-lock"></i></a></li>
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/api">API Reference</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/support">Support</a></li>
+            <li><a href="/howto">HOWTO<i class="glyphicon glyphicon-lock"></i></a></li>
           </ul>
         </div>
       </div>
     </nav>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-3 col-sm-push-9">
-          <h1>Resources</h1>
-          <hr>
-          <ul class="nav subnav">
-            <li><a href="/apidoc-seed/api/reference/#myResource"><span>/myResource</span></a></li>
-            <li><a href="/apidoc-seed/api/reference/#adminResource"><span>/adminResource</span><i class="glyphicon glyphicon-lock"></i></a></li>
-          </ul>
+    <div class="api-container">
+      <div class="api-content"><a id="top"></a>
+        <h1>API Resource Example</h1>
+        <hr>
+        <div class="page-header"><small></small><b>Endpoint: &nbsp;&nbsp;</b><a data-ref=".collapse-method" class="pull-right toggle-all"><i class="glyphicon glyphicon-plus"></i><i style="display: none;" class="glyphicon glyphicon-minus"></i></a>
         </div>
-        <div class="col-sm-9 col-sm-pull-3"><a id="top"></a>
-          <h1>List of resources</h1>
-          <hr>
-          <div class="page-header"><small></small><b>Endpoint: &nbsp;&nbsp;</b>https://localhost/api/v1
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 id="myResource" class="panel-title">
-                /myResource
-                
-              </h3>
+        <div id="myResource" class="resource resource-level-1">
+          <h4 class="resource-title">
+            <div class="resource-title-uri"><a data-ref="#myResource &gt; .collapse-level-1" class="toggle"><span class="parent"></span><span class="child">/myResource</span></a></div>
+            <div class="resource-title-description"><span>This is my resource.</span>
             </div>
-            <div class="panel-body">
-              <div class="resource-description"><p>This is my resource.</p>
+            <div class="resource-title-badges"><a data-toggle="collapse" data-target="#myResource-post"><span id="post_myResource" class="badge badge-post">post</span></a>
+            </div>
+          </h4>
+          <div id="myResource-post" data-ref="#myResource &gt; .collapse-level-1" class="panel-collapse collapse-method collapse collapse-level-1">
+            <div class="method method-post">
+              <h4 class="method-title"><span class="verb badge-post">post</span>&nbsp;&nbsp;<span class="url">/myResource</span></h4>
+              <div class="method-body">
+                <div class="description"><p>Create a resource. More text is only rendered in the details view of the method.</p>
 </div>
-              <div class="panel-group">
-                <div class="panel panel-white">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <!-- collapsed "buttons" (on the right side)--><a data-toggle="collapse" href="#panel_myResource" class="block collapsed"><span id="post_myResource" class="badge badge_post">post  </span><span class="parent"></span>/myResource
-                        </a>
-                    </h4>
-                  </div>
-                  <div id="panel_myResource" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <!-- extended "buttons" (list)-->
-                      <div class="list-group"><a href="#" data-toggle="modal" data-target="#myResource_post" class="list-group-item"><span class="badge badge_post">post  </span><span><p><p>Create a resource</p>
-</span></a>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="myResource_post" class="modal fade">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
-                          <h4 class="modal-title"><span class="badge badge_post">post  </span>&nbsp;&nbsp;<span class="parent"></span>/myResource</h4>
-                        </div>
-                        <div class="modal-body">
-                          <!-- Nav tabs-->
-                          <ul class="nav nav-tabs">
-                            <li class="active"><a href="#myResource_post_description" data-toggle="tab">Description</a></li>
-                            <li><a href="#myResource_post_request" data-toggle="tab">Request</a></li>
-                            <li><a href="#myResource_post_response" data-toggle="tab">Response</a></li>
-                          </ul>
-                          <!-- Tab panes-->
-                          <div class="tab-content">
-                            <div id="myResource_post_description" class="tab-pane active"><span><p>Create a resource. More text is only rendered in the details view of the method.</p>
-</span>
+                <div class="method-section">
+                  <h3 data-toggle="collapse" href="#myResource-post-request">Request</h3>
+                  <div id="myResource-post-request" class="method-section-content panel-collapse collapse in">
+                    <div class="method-section">
+                      <h3 data-toggle="collapse" data-target="#myResource-post-req-headers">Headers</h3>
+                      <div class="method-section-content">
+                        <div id="myResource-post-req-headers" class="panel-collapse collapse">
+                          <div class="flex-table">
+                            <div class="flex-table-headers no-left-border">
+                              <div class="flex-table-header">Name</div>
+                              <div class="flex-table-header center">Type</div>
+                              <div class="flex-table-header s3">Constraints</div>
+                              <div class="flex-table-header s3">Description</div>
+                              <div class="flex-table-header s3">Example</div>
                             </div>
-                            <div id="myResource_post_request" class="tab-pane">
-                              <h3>Headers</h3>
-                              <ul>
-                                <li class="markdown"><strong>Authorization</strong><em> (string)</em><p>A description.<div class="private"><div class="private--vertical-bar"><span class="glyphicon glyphicon-lock"></span></div><p>Note that you can also add <code>&lt;private&gt;</code> blocks in here.</p>
-</div></p>
-
-                                </li>
-                              </ul>
-                              <h3>Body</h3>
-                              <p><strong>Type: application/json</strong></p><strong>Example:</strong>
-                              <pre>{ "<span class="hljs-attribute">name</span>" : <span class="hljs-value"><span class="hljs-string">"myResource"</span> </span>}
-</pre>
-                            </div>
-                            <div id="myResource_post_response" class="tab-pane">
-                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/201" target="_blank">201</a></h2>
-                              <h3>Body</h3>
-                              <p><strong>Type: application/json</strong></p><strong>Example:</strong>
-                              <pre>{ "<span class="hljs-attribute">id</span>" : <span class="hljs-value"><span class="hljs-number">1</span></span>, "<span class="hljs-attribute">name</span>" : <span class="hljs-value"><span class="hljs-string">"myResource"</span> </span>}
-</pre>
+                            <div class="flex-table-row no-left-border">
+                              <div class="flex-table-cell">Authorization</div>
+                              <div class="flex-table-cell center">string
+                              </div>
+                              <div class="flex-table-cell s3">
+                                <ul>
+                                </ul>
+                              </div>
+                              <div class="flex-table-cell s3"><p>A description.</p>
+<private>
+Note that you can also add <code>&lt;private&gt;</code> blocks in here.
+</private>
+</div>
+                              <div class="flex-table-cell s3"></div>
                             </div>
                           </div>
                         </div>
                       </div>
+                    </div>
+                    <div class="method-section">
+                      <h3 class="no-action">Body</h3>
+                      <div class="method-section">
+                        <h3 data-toggle="collapse" data-target="#myResource-post-reques-body-example">Example</h3>
+                        <div id="myResource-post-reques-body-example" class="method-section-content panel-collapse collapse in">
+                          <pre>{ "<span class="hljs-attribute">name</span>" : <span class="hljs-value"><span class="hljs-string">"myResource"</span> </span>}
+</pre>
+                        </div>
+                      </div>
+                      <!--if formParameters-->
+                      <!--	strong Form Parameters-->
+                      <!--	ul-->
+                      <!--		each param in formParameters-->
+                      <!--			li.markdown-->
+                      <!--				strong=key-->
+                      <!--				em-->
+                      <!--					if param.required-->
+                      <!--						|  required-->
+                      <!--					if param.enum-->
+                      <!--						|  one of (#{param.enum})-->
+                      <!--					else-->
+                      <!--						|  (#{param.type})-->
+                      <!--				| !{description}-->
+                      <!--				if param.example-->
+                      <!--					p: small-->
+                      <!--						strong Example:-->
+                      <!--						code!=param.example-->
+                      <!--				if param.schema-->
+                      <!--					p:small-->
+                      <!--						strong Schema:-->
+                      <!--						code!=param.schema-->
                     </div>
                   </div>
                 </div>
-                <div class="panel panel-white">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <!-- collapsed "buttons" (on the right side)--><a data-toggle="collapse" href="#panel_myResource_myResourceId" class="block collapsed"><span id="get_myResource_myResourceId" class="badge badge_get">get  </span><span id="delete_myResource_myResourceId" class="badge badge_delete">delete   <i class="glyphicon glyphicon-lock" title="Internal"></i></span><span class="parent">/myResource</span>/{myResourceId}
-                        </a>
-                    </h4>
-                  </div>
-                  <div id="panel_myResource_myResourceId" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <!-- extended "buttons" (list)-->
-                      <div class="list-group"><a href="#" data-toggle="modal" data-target="#myResource_myResourceId_get" class="list-group-item"><span class="badge badge_get">get  </span><span><p><p>Retrieve a resource</p>
-</span></a><a href="#" data-toggle="modal" data-target="#myResource_myResourceId_delete" class="list-group-item"><span class="badge badge_delete">delete   <i class="glyphicon glyphicon-lock" title="Internal"></i></span><span><p><p>Delete a resource</p>
-</span></a>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="myResource_myResourceId_get" class="modal fade">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
-                          <h4 class="modal-title"><span class="badge badge_get">get  </span>&nbsp;&nbsp;<span class="parent">/myResource</span>/{myResourceId}</h4>
-                        </div>
-                        <div class="modal-body">
-                          <!-- Nav tabs-->
-                          <ul class="nav nav-tabs">
-                            <li class="active"><a href="#myResource_myResourceId_get_description" data-toggle="tab">Description</a></li>
-                            <li><a href="#myResource_myResourceId_get_request" data-toggle="tab">Request</a></li>
-                            <li><a href="#myResource_myResourceId_get_response" data-toggle="tab">Response</a></li>
-                          </ul>
-                          <!-- Tab panes-->
-                          <div class="tab-content">
-                            <div id="myResource_myResourceId_get_description" class="tab-pane active"><span><p>Retrieve a resource.</p>
-</span>
-                            </div>
-                            <div id="myResource_myResourceId_get_request" class="tab-pane">
-                              <h3>URI Parameters</h3>
-                              <ul>
-                                <li><strong>myResourceId string</strong></li>
-                              </ul>
-                            </div>
-                            <div id="myResource_myResourceId_get_response" class="tab-pane">
-                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/200" target="_blank">200</a></h2>
-                              <h3>Body</h3>
-                              <p><strong>Type: application/json</strong></p><strong>Example:</strong>
-                              <pre>{ "<span class="hljs-attribute">id</span>" : <span class="hljs-value"><span class="hljs-number">1</span></span>, "<span class="hljs-attribute">name</span>" : <span class="hljs-value"><span class="hljs-string">"myResource"</span> </span>}
-</pre>
-                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>The resource was not found.</p>
-
-                            </div>
+                <div class="method-section">
+                  <h3 data-toggle="collapse" href="#myResource-post-response">Response</h3>
+                  <div id="myResource-post-response" class="method-section-content panel-collapse collapse">
+                    <div class="method-section">
+                      <h3 class="no-action">Summary</h3>
+                      <div class="method-section-content">
+                        <div class="flex-table">
+                          <div class="flex-table-headers no-left-border">
+                            <div class="flex-table-header center">Status Code</div>
+                            <div class="flex-table-header s4">Description</div>
+                          </div>
+                          <div class="flex-table-row no-left-border">
+                            <div class="flex-table-cell center"><a href="http://httpstatus.es/201" target="_blank">201</a></div>
+                            <div class="flex-table-cell s4"></div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div id="myResource_myResourceId_delete" class="modal fade">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
-                          <h4 class="modal-title"><span class="badge badge_delete">delete   <i class="glyphicon glyphicon-lock" title="Internal"></i></span>&nbsp;&nbsp;<span class="parent">/myResource</span>/{myResourceId}</h4>
-                        </div>
-                        <div class="modal-body">
-                          <!-- Nav tabs-->
-                          <ul class="nav nav-tabs">
-                            <li class="active"><a href="#myResource_myResourceId_delete_description" data-toggle="tab">Description</a></li>
-                            <li><a href="#myResource_myResourceId_delete_request" data-toggle="tab">Request</a></li>
-                          </ul>
-                          <!-- Tab panes-->
-                          <div class="tab-content">
-                            <div id="myResource_myResourceId_delete_description" class="tab-pane active"><span><p>Delete a resource.</p>
-</span>
-                            </div>
-                            <div id="myResource_myResourceId_delete_request" class="tab-pane">
-                              <h3>URI Parameters</h3>
-                              <ul>
-                                <li><strong>myResourceId string</strong></li>
-                              </ul>
-                            </div>
+                    <div class="method-section">
+                      <h3 class="no-action">HTTP status code 201</h3>
+                      <div class="method-section">
+                        <h3 class="no-action">Body</h3>
+                        <div class="method-section">
+                          <h3 data-toggle="collapse" data-target="#myResource-post-response-201-body-example">Example</h3>
+                          <div id="myResource-post-response-201-body-example" class="method-section-content panel-collapse collapse in">
+                            <pre>{ "<span class="hljs-attribute">id</span>" : <span class="hljs-value"><span class="hljs-number">1</span></span>, "<span class="hljs-attribute">name</span>" : <span class="hljs-value"><span class="hljs-string">"myResource"</span> </span>}
+</pre>
                           </div>
                         </div>
                       </div>
@@ -197,60 +150,82 @@
                 </div>
               </div>
             </div>
-            <div class="panel-footer"><a href="#top" class="btn">Back to top</a></div>
           </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 id="adminResource" class="panel-title">
-                /adminResource
-                 <i class="glyphicon glyphicon-lock" title="Internal"></i>
-              </h3>
-            </div>
-            <div class="panel-body">
-              <div class="resource-description"><p>This is a private resource.</p>
+          <div id="myResource_myResourceId" class="resource resource-level-2">
+            <h4 class="resource-title">
+              <div class="resource-title-uri"><a data-ref="#myResource_myResourceId &gt; .collapse-level-2" class="toggle"><span class="parent">/myResource</span><span class="child">/{myResourceId}</span></a></div>
+              <div class="resource-title-badges"><a data-toggle="collapse" data-target="#myResource_myResourceId-get"><span id="get_myResource_myResourceId" class="badge badge-get">get</span></a><a data-toggle="collapse" data-target="#myResource_myResourceId-delete"><span id="delete_myResource_myResourceId" class="badge badge-delete">delete</span></a>
+              </div>
+            </h4>
+            <div id="myResource_myResourceId-get" data-ref="#myResource_myResourceId &gt; .collapse-level-2" class="panel-collapse collapse-method collapse collapse-level-2">
+              <div class="method method-get">
+                <h4 class="method-title"><span class="verb badge-get">get</span>&nbsp;&nbsp;<span class="url">/myResource/{myResourceId}</span></h4>
+                <div class="method-body">
+                  <div class="description"><p>Retrieve a resource.</p>
 </div>
-              <div class="panel-group">
-                <div class="panel panel-white">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <!-- collapsed "buttons" (on the right side)--><a data-toggle="collapse" href="#panel_adminResource" class="block collapsed"><span id="get_adminResource" class="badge badge_get">get   <i class="glyphicon glyphicon-lock" title="Internal"></i></span><span class="parent"></span>/adminResource
-                         <i class="glyphicon glyphicon-lock" title="Internal"></i></a>
-                    </h4>
-                  </div>
-                  <div id="panel_adminResource" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <!-- extended "buttons" (list)-->
-                      <div class="list-group"><a href="#" data-toggle="modal" data-target="#adminResource_get" class="list-group-item"><span class="badge badge_get">get   <i class="glyphicon glyphicon-lock" title="Internal"></i></span><span><p>Get secret message</p>
-</span></a>
+                  <div class="method-section">
+                    <h3 data-toggle="collapse" href="#myResource_myResourceId-get-request">Request</h3>
+                    <div id="myResource_myResourceId-get-request" class="method-section-content panel-collapse collapse in">
+                      <div class="method-section">
+                        <h3 data-toggle="collapse" data-target="#myResource_myResourceId-get-req-uri-params">URI Parameters</h3>
+                        <div class="method-section-content">
+                          <div id="myResource_myResourceId-get-req-uri-params" class="panel-collapse collapse">
+                            <div class="flex-table">
+                              <div class="flex-table-headers no-left-border">
+                                <div class="flex-table-header">Name</div>
+                                <div class="flex-table-header center">Type</div>
+                                <div class="flex-table-header s3">Constraints</div>
+                                <div class="flex-table-header s3">Description</div>
+                                <div class="flex-table-header s3">Example</div>
+                              </div>
+                              <div class="flex-table-row no-left-border">
+                                <div class="flex-table-cell">myResourceId</div>
+                                <div class="flex-table-cell center">string
+                                </div>
+                                <div class="flex-table-cell s3">
+                                  <ul>
+                                  </ul>
+                                </div>
+                                <div class="flex-table-cell s3"></div>
+                                <div class="flex-table-cell s3"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div id="adminResource_get" class="modal fade">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
-                          <h4 class="modal-title"><span class="badge badge_get">get   <i class="glyphicon glyphicon-lock" title="Internal"></i></span>&nbsp;&nbsp;<span class="parent"></span>/adminResource</h4>
+                  <div class="method-section">
+                    <h3 data-toggle="collapse" href="#myResource_myResourceId-get-response">Response</h3>
+                    <div id="myResource_myResourceId-get-response" class="method-section-content panel-collapse collapse">
+                      <div class="method-section">
+                        <h3 class="no-action">Summary</h3>
+                        <div class="method-section-content">
+                          <div class="flex-table">
+                            <div class="flex-table-headers no-left-border">
+                              <div class="flex-table-header center">Status Code</div>
+                              <div class="flex-table-header s4">Description</div>
+                            </div>
+                            <div class="flex-table-row no-left-border">
+                              <div class="flex-table-cell center"><a href="http://httpstatus.es/200" target="_blank">200</a></div>
+                              <div class="flex-table-cell s4"></div>
+                            </div>
+                            <div class="flex-table-row no-left-border">
+                              <div class="flex-table-cell center"><a href="http://httpstatus.es/404" target="_blank">404</a></div>
+                              <div class="flex-table-cell s4"><p>The resource was not found.</p>
+</div>
+                            </div>
+                          </div>
                         </div>
-                        <div class="modal-body">
-                          <!-- Nav tabs-->
-                          <ul class="nav nav-tabs">
-                            <li class="active"><a href="#adminResource_get_description" data-toggle="tab">Description</a></li>
-                            <li><a href="#adminResource_get_request" data-toggle="tab">Request</a></li>
-                            <li><a href="#adminResource_get_response" data-toggle="tab">Response</a></li>
-                          </ul>
-                          <!-- Tab panes-->
-                          <div class="tab-content">
-                            <div id="adminResource_get_description" class="tab-pane active"><span><p>Get secret message.</p>
-</span>
-                            </div>
-                            <div id="adminResource_get_request" class="tab-pane">
-                            </div>
-                            <div id="adminResource_get_response" class="tab-pane">
-                              <h2>HTTP status code&nbsp;<a href="http://httpstatus.es/200" target="_blank">200</a></h2>
-                              <h3>Body</h3>
-                              <p><strong>Type: application/json</strong></p><strong>Example:</strong>
-                              <pre>{"<span class="hljs-attribute">secret</span>" : <span class="hljs-value"><span class="hljs-string">"message"</span></span>}
+                      </div>
+                      <div class="method-section">
+                        <h3 class="no-action">HTTP status code 200</h3>
+                        <div class="method-section">
+                          <h3 class="no-action">Body</h3>
+                          <div class="method-section">
+                            <h3 data-toggle="collapse" data-target="#myResource_myResourceId-get-response-200-body-example">Example</h3>
+                            <div id="myResource_myResourceId-get-response-200-body-example" class="method-section-content panel-collapse collapse in">
+                              <pre>{ "<span class="hljs-attribute">id</span>" : <span class="hljs-value"><span class="hljs-number">1</span></span>, "<span class="hljs-attribute">name</span>" : <span class="hljs-value"><span class="hljs-string">"myResource"</span> </span>}
 </pre>
                             </div>
                           </div>
@@ -261,17 +236,120 @@
                 </div>
               </div>
             </div>
-            <div class="panel-footer"><a href="#top" class="btn">Back to top</a></div>
+            <div id="myResource_myResourceId-delete" data-ref="#myResource_myResourceId &gt; .collapse-level-2" class="panel-collapse collapse-method collapse collapse-level-2">
+              <div class="method method-delete">
+                <h4 class="method-title"><span class="verb badge-delete">delete</span>&nbsp;&nbsp;<span class="url">/myResource/{myResourceId}</span></h4>
+                <div class="method-body">
+                  <div class="description"><p>Delete a resource.</p>
+</div>
+                  <div class="method-section">
+                    <h3 data-toggle="collapse" href="#myResource_myResourceId-delete-request">Request</h3>
+                    <div id="myResource_myResourceId-delete-request" class="method-section-content panel-collapse collapse in">
+                      <div class="method-section">
+                        <h3 data-toggle="collapse" data-target="#myResource_myResourceId-delete-req-uri-params">URI Parameters</h3>
+                        <div class="method-section-content">
+                          <div id="myResource_myResourceId-delete-req-uri-params" class="panel-collapse collapse">
+                            <div class="flex-table">
+                              <div class="flex-table-headers no-left-border">
+                                <div class="flex-table-header">Name</div>
+                                <div class="flex-table-header center">Type</div>
+                                <div class="flex-table-header s3">Constraints</div>
+                                <div class="flex-table-header s3">Description</div>
+                                <div class="flex-table-header s3">Example</div>
+                              </div>
+                              <div class="flex-table-row no-left-border">
+                                <div class="flex-table-cell">myResourceId</div>
+                                <div class="flex-table-cell center">string
+                                </div>
+                                <div class="flex-table-cell s3">
+                                  <ul>
+                                  </ul>
+                                </div>
+                                <div class="flex-table-cell s3"></div>
+                                <div class="flex-table-cell s3"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+        <div id="adminResource" class="resource resource-level-1">
+          <h4 class="resource-title">
+            <div class="resource-title-uri"><a data-ref="#adminResource &gt; .collapse-level-1" class="toggle"><span class="parent"></span><span class="child">/adminResource</span></a></div>
+            <div class="resource-title-description"><span>This is a private resource.</span>
+            </div>
+            <div class="resource-title-badges"><a data-toggle="collapse" data-target="#adminResource-get"><span id="get_adminResource" class="badge badge-get">get</span></a>
+            </div>
+          </h4>
+          <div id="adminResource-get" data-ref="#adminResource &gt; .collapse-level-1" class="panel-collapse collapse-method collapse collapse-level-1">
+            <div class="method method-get">
+              <h4 class="method-title"><span class="verb badge-get">get</span>&nbsp;&nbsp;<span class="url">/adminResource</span></h4>
+              <div class="method-body">
+                <div class="description"><p>Get secret message.</p>
+</div>
+                <div class="method-section">
+                  <h3 data-toggle="collapse" href="#adminResource-get-request">Request</h3>
+                  <div id="adminResource-get-request" class="method-section-content panel-collapse collapse in">
+                  </div>
+                </div>
+                <div class="method-section">
+                  <h3 data-toggle="collapse" href="#adminResource-get-response">Response</h3>
+                  <div id="adminResource-get-response" class="method-section-content panel-collapse collapse">
+                    <div class="method-section">
+                      <h3 class="no-action">Summary</h3>
+                      <div class="method-section-content">
+                        <div class="flex-table">
+                          <div class="flex-table-headers no-left-border">
+                            <div class="flex-table-header center">Status Code</div>
+                            <div class="flex-table-header s4">Description</div>
+                          </div>
+                          <div class="flex-table-row no-left-border">
+                            <div class="flex-table-cell center"><a href="http://httpstatus.es/200" target="_blank">200</a></div>
+                            <div class="flex-table-cell s4"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="method-section">
+                      <h3 class="no-action">HTTP status code 200</h3>
+                      <div class="method-section">
+                        <h3 class="no-action">Body</h3>
+                        <div class="method-section">
+                          <h3 data-toggle="collapse" data-target="#adminResource-get-response-200-body-example">Example</h3>
+                          <div id="adminResource-get-response-200-body-example" class="method-section-content panel-collapse collapse in">
+                            <pre>{"<span class="hljs-attribute">secret</span>" : <span class="hljs-value"><span class="hljs-string">"message"</span></span>}
+</pre>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="api-menu">
+        <div data-spy="affix" data-offset-top="105" class="api-menu-content affix-top"><a href="/">Overview</a><a href="/api/reference">Resources</a><a href="/api/reference/#myResource" class="level-1"><span>/myResource</span></a><a href="/api/reference/#adminResource" class="level-1"><span>/adminResource</span></a>
         </div>
       </div>
     </div>
     <div class="footer">
       <div class="container">
         <p><a href="https://github.com/lotaris/apidoc-seed">apidoc-seed</a>&nbsp;- An API documentation project using Grunt, Metalsmith and RAML.</p>
-        <p>Version: 0.0.1  |  Built September 17, 2014 10:38 AM</p>
+        <p>Version: 0.0.1  |  Built April 23, 2015 3:53 PM</p>
       </div>
     </div>
-    <script type="text/javascript" src="/apidoc-seed/js/global.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/js/smoothscroll.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
   </body>
 </html>

@@ -1,107 +1,601 @@
+.affix {
+  padding-top: 10px;
+  top: 0;
+}
+/*.affix-top*/
+/*top 90px*/
 .markdown *:last-child {
   margin-bottom: 0;
+}
+.api-container {
+  flex-direction: row;
+  display: flex;
+  padding: 20px;
+}
+.api-container .api-content {
+  overflow: scroll;
+  margin: 20px;
+  flex: 6;
+}
+.api-container .api-menu {
+  margin: 20px;
+  flex: 1;
+}
+.api-container .api-menu .api-menu-content {
+  flex-direction: column;
+  display: flex;
+}
+.api-container .api-menu .api-menu-content a {
+  margin-bottom: 6px;
+  font-weight: bold;
+  font-size: 1.3em;
+  flex: 1;
+}
+.api-container .api-menu .api-menu-content a.level-1 {
+  margin-bottom: 3px;
+  margin-left: 20px;
+}
+pre {
+  overflow: scroll;
 }
 .parent {
   color: #999;
 }
-.list-group-item > .badge {
-  float: none;
-  margin-right: 6px;
+.child {
+  color: #000;
 }
-.panel-title > .block > .badge {
-  float: right;
-  margin-left: 5px;
+.toggle-all i {
+  cursor: pointer;
 }
-.badge {
-  border-radius: 0;
+.badge-required {
+  background-color: #b92c31;
+}
+.badge-repeat {
+  background-color: #3b4de2;
+}
+.method {
+  border-left: 10px solid #bebebe;
+  flex-direction: column;
+  background: #eee;
+  display: flex;
+}
+.method p {
+  margin: 0;
+}
+.method table {
+  margin-bottom: 0;
+}
+.method table td {
+  background-color: transparent !important;
+}
+.method table td .constraints {
+  display: flex;
+  flex-direction: column;
+}
+.method table td .constraints .constraint {
+  margin: 3px;
+  flex: 1;
+}
+.method table pre {
+  background-color: transparent;
+  line-height: 24px;
+  margin-bottom: 0;
+  border: none;
+  padding: 0;
+}
+.method table .center {
+  text-align: center;
+}
+.method .method-title {
+  align-items: baseline;
+  flex-direction: row;
+  display: flex;
+  margin: 0;
+  flex: 1;
+}
+.method .method-title span.verb {
   text-transform: uppercase;
-  min-width: 70px;
-  font-weight: normal;
+  font-weight: bold;
+  padding: 10px 0;
+  font-size: 1em;
   color: #f3f3f6;
+  display: flex;
+}
+.method .method-title span.url {
+  display: flex;
+  color: #000;
+}
+.method .description {
+  padding: 15px 0;
+  margin: 0;
+}
+.method .method-body .method-section {
+  flex-direction: column;
+  display: flex;
+}
+.method .method-body .method-section h3 {
+  font-size: 1.1em;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0;
+}
+.method .method-body .method-section h3.no-action {
+  cursor: inherit;
+}
+.method .method-body .method-section pre {
+  margin-bottom: 0;
+  border: none;
+}
+.method ul.nav-tabs {
+  border-bottom-width: 3px;
+}
+.method ul.nav-tabs li {
+  margin-bottom: 0;
+}
+.method ul.nav-tabs li a {
+  border: none !important;
+  border-radius: 0;
+  outline: 0;
+}
+.method .tab-content {
+  padding: 0;
+}
+.resource {
+  border-top: 1px solid #bebebe;
+  flex-direction: column;
+  padding-left: 10px;
+  background: #eee;
+  display: flex;
+}
+.resource:last-child.resource-level-1 {
+  border-bottom: 1px solid #bebebe;
+}
+.resource > .resource {
+  background: #f4f4f4;
+  border-left-color: #f4f4f4;
+}
+.resource > .resource .resource-title {
+  background-color: #f4f4f4;
+}
+.resource > .resource .resource-title .resource-title-description {
+  margin-left: -10px;
+}
+.resource > .resource > .resource {
+  background: #fafafa;
+  border-left-color: #fafafa;
+}
+.resource > .resource > .resource .resource-title {
+  background-color: #fafafa;
+}
+.resource > .resource > .resource .resource-title .resource-title-description {
+  margin-left: -20px;
+}
+.resource > .resource > .resource > .resource {
+  background: #fff;
+  border-left-color: #fff;
+}
+.resource > .resource > .resource > .resource .resource-title {
+  background-color: #fff;
+}
+.resource > .resource > .resource > .resource .resource-title .resource-title-description {
+  margin-left: -30px;
+}
+.resource > .resource > .resource > .resource > .resource {
+  background: #fff;
+  border-left-color: #fff;
+}
+.resource > .resource > .resource > .resource > .resource .resource-title {
+  background-color: #fff;
+}
+.resource > .resource > .resource > .resource > .resource .resource-title .resource-title-description {
+  margin-left: -40px;
+}
+.resource .resource-title {
+  background-color: #eee;
+  padding: 10px 0;
+  display: flex;
+  margin: 0;
+  align-items: center;
+}
+.resource .resource-title a {
+  text-decoration: none !important;
+  cursor: pointer;
+}
+.resource .resource-title .resource-title-uri,
+.resource .resource-title .resource-title-badges {
+  flex: 1;
+}
+.resource .resource-title .resource-title-description {
+  font-weight: normal;
+  font-size: 0.8em;
+  flex: 3;
+}
+.resource .resource-title .resource-title-description .description-link {
+  padding-left: 5px;
+}
+.resource .resource-title .badge {
+  text-transform: uppercase;
   line-height: normal;
+  font-weight: bold;
+  margin-right: 5px;
+  border-radius: 0;
+  min-width: 70px;
+  color: #f3f3f6;
+  padding: 5px;
+  float: right;
 }
-.block {
-  display: block;
+.flex-table {
+  flex-direction: column;
+  display: flex;
 }
-.block .badge {
-  visibility: hidden;
+.flex-table .left {
+  text-align: left;
 }
-.block.collapsed .badge {
-  visibility: visible;
+.flex-table .center {
+  text-align: center;
 }
-.block .glyphicon,
-.panel-heading > h3 .glyphicon {
-  font-size: 12px;
-  margin-left: 5px;
-  color: #555;
+.flex-table .right {
+  text-align: right;
 }
-.panel-warning .panel-heading > h3 .glyphicon {
-  font-size: 12px;
-  margin-left: 5px;
-  color: #8a6d3b;
+.flex-table .s2 {
+  flex: 2 !important;
 }
-.badge > .glyphicon {
-  color: #fff;
-  margin-left: 5px;
-  margin-right: 1px;
+.flex-table .s3 {
+  flex: 3 !important;
 }
-.badge_get {
+.flex-table .s4 {
+  flex: 4 !important;
+}
+.flex-table .s5 {
+  flex: 5 !important;
+}
+.flex-table .s6 {
+  flex: 6 !important;
+}
+.flex-table .s7 {
+  flex: 7 !important;
+}
+.flex-table .s8 {
+  flex: 8 !important;
+}
+.flex-table .s9 {
+  flex: 9 !important;
+}
+.flex-table .s10 {
+  flex: 10 !important;
+}
+.flex-table .flex-table-headers {
+  display: flex;
+}
+.flex-table .flex-table-headers .flex-table-header {
+  border-left-width: 1px;
+  border-left-style: solid;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 10px;
+  flex: 1;
+}
+.flex-table .no-left-border .flex-table-header:first-of-type {
+  border-left: none;
+}
+.flex-table .flex-table-row {
+  display: flex;
+}
+.flex-table .flex-table-row .flex-table-cell {
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #000;
+  border-top: 1px solid #000;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: -1px;
+  display: flex;
+  padding: 10px;
+  flex: 1;
+}
+.flex-table .flex-table-row .flex-table-cell .badge {
+  align-self: flex-start;
+}
+.flex-table .flex-table-row .flex-table-cell ul {
+  margin: 0;
+}
+.flex-table .flex-table-row .flex-table-cell h2 {
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 0;
+  margin: 0;
+}
+.flex-table .flex-table-row:last-of-type .flex-table-cell {
+  border-bottom: none;
+}
+.flex-table .no-left-border .flex-table-cell:first-of-type {
+  border-left: none;
+}
+.flex-table .flex-table-row.level-0 .property {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+.flex-table .flex-table-row.level-1 .property {
+  margin-right: -10px;
+  margin-left: 10px;
+}
+.flex-table .flex-table-row.level-2 .property {
+  margin-right: -20px;
+  margin-left: 20px;
+}
+.flex-table .flex-table-row.level-3 .property {
+  margin-right: -30px;
+  margin-left: 30px;
+}
+.flex-table .flex-table-row.level-4 .property {
+  margin-right: -40px;
+  margin-left: 40px;
+}
+.flex-table .flex-table-row.level-5 .property {
+  margin-right: -50px;
+  margin-left: 50px;
+}
+.badge-get {
   background-color: #63a8e2;
 }
-.badge_post {
+.method-get {
+  border-left-color: #63a8e2;
+  background: #e8f2fb;
+}
+.method-get .method-title {
+  background: #63a8e2;
+}
+.method-get .method-body .method-section h3 {
+  margin-left: 0px;
+  border-bottom: 1px solid #63a8e2;
+  background: #9ac6ec;
+}
+.method-get .method-body .method-section .method-section-content {
+  margin-left: 0px;
+}
+.method-get .method-body .method-section .method-section h3 {
+  margin-left: 10px;
+  border-bottom: 1px solid #9ac6ec;
+  background: #bddaf3;
+}
+.method-get .method-body .method-section .method-section .method-section-content {
+  margin-left: 10px;
+}
+.method-get .method-body .method-section .method-section .method-section h3 {
+  margin-left: 20px;
+  border-bottom: 1px solid #bddaf3;
+  background: #d4e7f7;
+}
+.method-get .method-body .method-section .method-section .method-section .method-section-content {
+  margin-left: 20px;
+}
+.method-get .method-body .method-section .method-section .method-section .method-section h3 {
+  margin-left: 30px;
+  border-bottom: 1px solid #d4e7f7;
+  background: #e3effa;
+}
+.method-get .method-body .method-section .method-section .method-section .method-section .method-section-content {
+  margin-left: 30px;
+}
+.method-get .method-body .description {
+  border-bottom: 3px solid #63a8e2;
+  padding-left: 10px;
+}
+.method-get ul.nav-tabs {
+  border-bottom: 1px solid #63a8e2;
+}
+.method-get .flex-table-header,
+.method-get .flex-table-cell {
+  border-color: #63a8e2 !important;
+}
+.badge-post {
   background-color: #6cbd7d;
 }
-.badge_put {
+.method-post {
+  border-left-color: #6cbd7d;
+  background: #e9f5ec;
+}
+.method-post .method-title {
+  background: #6cbd7d;
+}
+.method-post .method-body .method-section h3 {
+  margin-left: 0px;
+  border-bottom: 1px solid #6cbd7d;
+  background: #9fd4ab;
+}
+.method-post .method-body .method-section .method-section-content {
+  margin-left: 0px;
+}
+.method-post .method-body .method-section .method-section h3 {
+  margin-left: 10px;
+  border-bottom: 1px solid #9fd4ab;
+  background: #c1e3c8;
+}
+.method-post .method-body .method-section .method-section .method-section-content {
+  margin-left: 10px;
+}
+.method-post .method-body .method-section .method-section .method-section h3 {
+  margin-left: 20px;
+  border-bottom: 1px solid #c1e3c8;
+  background: #d7eddb;
+}
+.method-post .method-body .method-section .method-section .method-section .method-section-content {
+  margin-left: 20px;
+}
+.method-post .method-body .method-section .method-section .method-section .method-section h3 {
+  margin-left: 30px;
+  border-bottom: 1px solid #d7eddb;
+  background: #e5f3e8;
+}
+.method-post .method-body .method-section .method-section .method-section .method-section .method-section-content {
+  margin-left: 30px;
+}
+.method-post .method-body .description {
+  border-bottom: 3px solid #6cbd7d;
+  padding-left: 10px;
+}
+.method-post ul.nav-tabs {
+  border-bottom: 1px solid #6cbd7d;
+}
+.method-post .flex-table-header,
+.method-post .flex-table-cell {
+  border-color: #6cbd7d !important;
+}
+.badge-patch {
+  background-color: #bd9368;
+}
+.method-patch {
+  border-left-color: #bd9368;
+  background: #f5efe8;
+}
+.method-patch .method-title {
+  background: #bd9368;
+}
+.method-patch .method-body .method-section h3 {
+  margin-left: 0px;
+  border-bottom: 1px solid #bd9368;
+  background: #d4b99d;
+}
+.method-patch .method-body .method-section .method-section-content {
+  margin-left: 0px;
+}
+.method-patch .method-body .method-section .method-section h3 {
+  margin-left: 10px;
+  border-bottom: 1px solid #d4b99d;
+  background: #e3d2bf;
+}
+.method-patch .method-body .method-section .method-section .method-section-content {
+  margin-left: 10px;
+}
+.method-patch .method-body .method-section .method-section .method-section h3 {
+  margin-left: 20px;
+  border-bottom: 1px solid #e3d2bf;
+  background: #ede2d5;
+}
+.method-patch .method-body .method-section .method-section .method-section .method-section-content {
+  margin-left: 20px;
+}
+.method-patch .method-body .method-section .method-section .method-section .method-section h3 {
+  margin-left: 30px;
+  border-bottom: 1px solid #ede2d5;
+  background: #f3ece4;
+}
+.method-patch .method-body .method-section .method-section .method-section .method-section .method-section-content {
+  margin-left: 30px;
+}
+.method-patch .method-body .description {
+  border-bottom: 3px solid #bd9368;
+  padding-left: 10px;
+}
+.method-patch ul.nav-tabs {
+  border-bottom: 1px solid #bd9368;
+}
+.method-patch .flex-table-header,
+.method-patch .flex-table-cell {
+  border-color: #bd9368 !important;
+}
+.badge-put {
   background-color: #22bac4;
 }
-.badge_delete {
+.method-put {
+  border-left-color: #22bac4;
+  background: #dbf7f9;
+}
+.method-put .method-title {
+  background: #22bac4;
+}
+.method-put .method-body .method-section h3 {
+  margin-left: 0px;
+  border-bottom: 1px solid #22bac4;
+  background: #64dce4;
+}
+.method-put .method-body .method-section .method-section-content {
+  margin-left: 0px;
+}
+.method-put .method-body .method-section .method-section h3 {
+  margin-left: 10px;
+  border-bottom: 1px solid #64dce4;
+  background: #9ae8ed;
+}
+.method-put .method-body .method-section .method-section .method-section-content {
+  margin-left: 10px;
+}
+.method-put .method-body .method-section .method-section .method-section h3 {
+  margin-left: 20px;
+  border-bottom: 1px solid #9ae8ed;
+  background: #bdf0f3;
+}
+.method-put .method-body .method-section .method-section .method-section .method-section-content {
+  margin-left: 20px;
+}
+.method-put .method-body .method-section .method-section .method-section .method-section h3 {
+  margin-left: 30px;
+  border-bottom: 1px solid #bdf0f3;
+  background: #d4f5f7;
+}
+.method-put .method-body .method-section .method-section .method-section .method-section .method-section-content {
+  margin-left: 30px;
+}
+.method-put .method-body .description {
+  border-bottom: 3px solid #22bac4;
+  padding-left: 10px;
+}
+.method-put ul.nav-tabs {
+  border-bottom: 1px solid #22bac4;
+}
+.method-put .flex-table-header,
+.method-put .flex-table-cell {
+  border-color: #22bac4 !important;
+}
+.badge-delete {
   background-color: #d26460;
 }
-.list-group,
-.panel-group {
-  margin-bottom: 0;
+.method-delete {
+  border-left-color: #d26460;
+  background: #f8e8e7;
 }
-.panel-group .panel + .panel-white {
-  margin-top: 0;
+.method-delete .method-title {
+  background: #d26460;
 }
-.panel-group .panel-white {
-  border-bottom: 1px solid #f5f5f5;
-  border-radius: 0;
+.method-delete .method-body .method-section h3 {
+  margin-left: 0px;
+  border-bottom: 1px solid #d26460;
+  background: #e29a98;
 }
-.panel-white:last-child {
-  border-bottom-color: #fff;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+.method-delete .method-body .method-section .method-section-content {
+  margin-left: 0px;
 }
-.panel-white .panel-heading {
-  background: #fff;
+.method-delete .method-body .method-section .method-section h3 {
+  margin-left: 10px;
+  border-bottom: 1px solid #e29a98;
+  background: #ecbdbc;
 }
-.tab-pane ul {
-  padding-left: 2em;
+.method-delete .method-body .method-section .method-section .method-section-content {
+  margin-left: 10px;
 }
-.tab-pane h2 {
-  font-size: 1.2em;
-  padding-bottom: 4px;
-  border-bottom: 1px solid #ddd;
+.method-delete .method-body .method-section .method-section .method-section h3 {
+  margin-left: 20px;
+  border-bottom: 1px solid #ecbdbc;
+  background: #f3d4d3;
 }
-.tab-pane h3 {
-  font-size: 1.1em;
+.method-delete .method-body .method-section .method-section .method-section .method-section-content {
+  margin-left: 20px;
 }
-.tab-content {
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  padding: 10px;
+.method-delete .method-body .method-section .method-section .method-section .method-section h3 {
+  margin-left: 30px;
+  border-bottom: 1px solid #f3d4d3;
+  background: #f7e3e2;
 }
-.resource-description {
-  border-bottom: 1px solid #ddd;
-  background: #fcfcfc;
-  padding: 15px 15px 0 15px;
-  margin: -15px -15px 10px -15px;
+.method-delete .method-body .method-section .method-section .method-section .method-section .method-section-content {
+  margin-left: 30px;
 }
-.modal .well {
-  margin-bottom: 0;
+.method-delete .method-body .description {
+  border-bottom: 3px solid #d26460;
+  padding-left: 10px;
 }
-.panel-warning .panel-footer {
-  border-top: solid 1px #faebcc;
+.method-delete ul.nav-tabs {
+  border-bottom: 1px solid #d26460;
+}
+.method-delete .flex-table-header,
+.method-delete .flex-table-cell {
+  border-color: #d26460 !important;
 }
