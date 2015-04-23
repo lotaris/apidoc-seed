@@ -1,5 +1,6 @@
 var
 	_ = require('underscore'),
+	autoprefixer = require('autoprefixer-core'),
 	helpers = require('./utils/jade.helpers'),
 	moment = require('moment'),
 	pkg = require('./package');
@@ -43,6 +44,15 @@ module.exports = function (grunt) {
 					ext: '.css'
 				} ]
 			}
+		},
+
+		postcss: {
+			options: {
+				processors: [
+					autoprefixer({ browsers: ['last 2 version'] }).postcss
+				]
+			},
+			dist: { src: 'build/css/*.css' }
 		},
 
 		copy: {
@@ -257,11 +267,12 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-http-server');
 	grunt.loadNpmTasks('grunt-metalsmith');
 	grunt.loadNpmTasks('grunt-text-replace');
+	grunt.loadNpmTasks('grunt-postcss');
 
 	grunt.registerTask(
 		'build-stylesheets',
 		'Compiles stylesheets.',
-		[ 'mkdir:stylesheets', 'stylus', 'copy:static' ]
+		[ 'mkdir:stylesheets', 'stylus', 'postcss', 'copy:static' ]
 	);
 
 	grunt.registerTask(
