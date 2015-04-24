@@ -62,10 +62,10 @@ pre {
   cursor: pointer;
 }
 .badge-required {
-  background-color: #b92c31;
+  background-color: #b93634;
 }
 .badge-repeat {
-  background-color: #3b4de2;
+  background-color: #4a70e2;
 }
 .method {
   border-left: 10px solid #bebebe;
@@ -293,6 +293,9 @@ pre {
 .flex-table .right {
   text-align: right;
 }
+.flex-table .no-padding {
+  padding: 0 !important;
+}
 .flex-table .s2 {
   -webkit-flex: 2 !important;
       -ms-flex: 2 !important;
@@ -344,10 +347,12 @@ pre {
   display: flex;
 }
 .flex-table .flex-table-headers .flex-table-header {
-  border-left-width: 1px;
+  border-bottom: 4px solid #000;
+  border-top: 3px solid #000;
   border-left-style: solid;
-  font-size: 1.2em;
+  border-left-width: 1px;
   font-weight: bold;
+  font-size: 1.2em;
   padding: 10px;
   -webkit-flex: 1;
       -ms-flex: 1;
@@ -400,6 +405,126 @@ pre {
 .flex-table .no-left-border .flex-table-cell:first-of-type {
   border-left: none;
 }
+.flex-table .flex-table.level-0 {
+  border-bottom: 1px solid #000;
+}
+.flex-table .flex-table.level-0 .flex-table-cell {
+  border-bottom: none !important;
+}
+.flex-table .flex-table.level-0 .property {
+  margin-right: 0px !important;
+  margin-left: 0 !important;
+}
+.flex-table .flex-table.level-1 {
+  border-left: 1px solid #000;
+  padding-left: 10px;
+}
+.flex-table .flex-table.level-1 .flex-table-cell {
+  border-bottom: none !important;
+}
+.flex-table .flex-table.level-1 .property {
+  margin-right: -11px !important;
+  margin-left: 0 !important;
+}
+.flex-table .flex-table.level-2 {
+  border-left: 1px solid #000;
+  padding-left: 10px;
+}
+.flex-table .flex-table.level-2 .flex-table-cell {
+  border-bottom: none !important;
+}
+.flex-table .flex-table.level-2 .property {
+  margin-right: -22px !important;
+  margin-left: 0 !important;
+}
+.flex-table .flex-table.level-3 {
+  border-left: 1px solid #000;
+  padding-left: 10px;
+}
+.flex-table .flex-table.level-3 .flex-table-cell {
+  border-bottom: none !important;
+}
+.flex-table .flex-table.level-3 .property {
+  margin-right: -33px !important;
+  margin-left: 0 !important;
+}
+.flex-table .flex-table.level-4 {
+  border-left: 1px solid #000;
+  padding-left: 10px;
+}
+.flex-table .flex-table.level-4 .flex-table-cell {
+  border-bottom: none !important;
+}
+.flex-table .flex-table.level-4 .property {
+  margin-right: -44px !important;
+  margin-left: 0 !important;
+}
+.flex-table .flex-table.level-5 {
+  border-left: 1px solid #000;
+  padding-left: 10px;
+}
+.flex-table .flex-table.level-5 .flex-table-cell {
+  border-bottom: none !important;
+}
+.flex-table .flex-table.level-5 .property {
+  margin-right: -55px !important;
+  margin-left: 0 !important;
+}
+.flex-table .flex-table.level-6 {
+  border-left: 1px solid #000;
+  padding-left: 10px;
+}
+.flex-table .flex-table.level-6 .flex-table-cell {
+  border-bottom: none !important;
+}
+.flex-table .flex-table.level-6 .property {
+  margin-right: -66px !important;
+  margin-left: 0 !important;
+}
+.flex-table .flex-table.level-7 {
+  border-left: 1px solid #000;
+  padding-left: 10px;
+}
+.flex-table .flex-table.level-7 .flex-table-cell {
+  border-bottom: none !important;
+}
+.flex-table .flex-table.level-7 .property {
+  margin-right: -77px !important;
+  margin-left: 0 !important;
+}
+.flex-table .flex-table.level-8 {
+  border-left: 1px solid #000;
+  padding-left: 10px;
+}
+.flex-table .flex-table.level-8 .flex-table-cell {
+  border-bottom: none !important;
+}
+.flex-table .flex-table.level-8 .property {
+  margin-right: -88px !important;
+  margin-left: 0 !important;
+}
+.flex-table .flex-table.level-9 {
+  border-left: 1px solid #000;
+  padding-left: 10px;
+}
+.flex-table .flex-table.level-9 .flex-table-cell {
+  border-bottom: none !important;
+}
+.flex-table .flex-table.level-9 .property {
+  margin-right: -99px !important;
+  margin-left: 0 !important;
+}
+.flex-table .flex-table.level-10 {
+  border-left: 1px solid #000;
+  padding-left: 10px;
+}
+.flex-table .flex-table.level-10 .flex-table-cell {
+  border-bottom: none !important;
+}
+.flex-table .flex-table.level-10 .property {
+  margin-right: -110px !important;
+  margin-left: 0 !important;
+}
 .flex-table .flex-table-row.level-0 .property {
   margin-right: 0px;
   margin-left: 0px;
@@ -423,6 +548,26 @@ pre {
 .flex-table .flex-table-row.level-5 .property {
   margin-right: -50px;
   margin-left: 50px;
+}
+.flex-table .flex-table-row.level-6 .property {
+  margin-right: -60px;
+  margin-left: 60px;
+}
+.flex-table .flex-table-row.level-7 .property {
+  margin-right: -70px;
+  margin-left: 70px;
+}
+.flex-table .flex-table-row.level-8 .property {
+  margin-right: -80px;
+  margin-left: 80px;
+}
+.flex-table .flex-table-row.level-9 .property {
+  margin-right: -90px;
+  margin-left: 90px;
+}
+.flex-table .flex-table-row.level-10 .property {
+  margin-right: -100px;
+  margin-left: 100px;
 }
 .badge-get {
   background-color: #63a8e2;
@@ -473,9 +618,13 @@ pre {
 .method-get ul.nav-tabs {
   border-bottom: 1px solid #63a8e2;
 }
+.method-get .flex-table,
 .method-get .flex-table-header,
 .method-get .flex-table-cell {
   border-color: #63a8e2 !important;
+}
+.method-get .flex-table-header {
+  background-color: #b1d3f1;
 }
 .badge-post {
   background-color: #6cbd7d;
@@ -526,9 +675,13 @@ pre {
 .method-post ul.nav-tabs {
   border-bottom: 1px solid #6cbd7d;
 }
+.method-post .flex-table,
 .method-post .flex-table-header,
 .method-post .flex-table-cell {
   border-color: #6cbd7d !important;
+}
+.method-post .flex-table-header {
+  background-color: #b6debe;
 }
 .badge-patch {
   background-color: #bd9368;
@@ -579,9 +732,13 @@ pre {
 .method-patch ul.nav-tabs {
   border-bottom: 1px solid #bd9368;
 }
+.method-patch .flex-table,
 .method-patch .flex-table-header,
 .method-patch .flex-table-cell {
   border-color: #bd9368 !important;
+}
+.method-patch .flex-table-header {
+  background-color: #dec9b3;
 }
 .badge-put {
   background-color: #22bac4;
@@ -632,9 +789,13 @@ pre {
 .method-put ul.nav-tabs {
   border-bottom: 1px solid #22bac4;
 }
+.method-put .flex-table,
 .method-put .flex-table-header,
 .method-put .flex-table-cell {
   border-color: #22bac4 !important;
+}
+.method-put .flex-table-header {
+  background-color: #88e4ea;
 }
 .badge-delete {
   background-color: #d26460;
@@ -685,7 +846,11 @@ pre {
 .method-delete ul.nav-tabs {
   border-bottom: 1px solid #d26460;
 }
+.method-delete .flex-table,
 .method-delete .flex-table-header,
 .method-delete .flex-table-cell {
   border-color: #d26460 !important;
+}
+.method-delete .flex-table-header {
+  background-color: #e9b2b0;
 }
