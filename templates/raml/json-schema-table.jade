@@ -138,59 +138,69 @@ mixin constraints(property, name, required)
 		+enum(property)
 		+minMaxItems(property)
 
-mixin propertyRow(name, property, required, level)
+mixin propertyRowLeveled(property, level)
+	if property.type == 'object'
+		+properties(property, level + 1)
+	else if property.type == 'array'
+		+propertyRow(null, property.items, [], level + 1)
+
+mixin propertyRowContent(name, property, required, level)
 	.flex-table-row(class='level-#{level}')
-		.flex-table-cell.property= name
+		if name
+			.flex-table-cell.property= name
+		else
+			.flex-table-cell.property
+				.badge.badge-repeat
+					if property.type == 'array'
+						| collection
+					else
+						| item
 		.flex-table-cell.center= property.type
 		.flex-table-cell.s2
 			+constraints(property, name, required)
 		.flex-table-cell.s2!= helpers.marked(property.description)
 
-	if property.type == 'object'
-		+properties(property, level + 1)
+mixin propertyRow(name, property, required, level)
+	if helpers.isSchemaIndentBordered
+		.flex-table(class='level-#{level}')
+			+propertyRowContent(name, property, required, level)
+
+			if property.type == 'object' || property.type == 'array'
+				+propertyRowLeveled(property, level)
+
+	else
+		+propertyRowContent(name, property, required, level)
+		+propertyRowLeveled(property, level)
 
 mixin properties(schema, level)
-	if schema.properties
-		each property, name in schema.properties
-			+propertyRow(name, property, schema.required, level)
+	if schema.type == 'array'
+		+propertyRow(null, schema, schema.required, level)
 
-	if schema.patternProperties
-		each property, name in schema.patternProperties
-			+propertyRow(name, property, schema.required, level)
+	else
+		if schema.properties
+			each property, name in schema.properties
+				+propertyRow(name, property, schema.required, level)
+
+		if schema.patternProperties
+			each property, name in schema.patternProperties
+				+propertyRow(name, property, schema.required, level)
 
 mixin jsonSchemaTable(schema)
 	.jsonSchemaLevel
-		if schema.type == 'array'
-			if schema.title
-				h4= schema.title
-			if schema.description
-				p= helpers.marked(schema.description)
-			+jsonSchemaTable(schema.items)
-		else
-			if schema.properties || schema.patternProperties
-				.flex-table
-					.flex-table-headers.no-left-border
-						.flex-table-header Property
-						.flex-table-header.center Type
-						.flex-table-header.s2 Constraints
-						.flex-table-header.s2 Description
+		if schema.properties || schema.patternProperties || schema.items
+			.flex-table
+				.flex-table-row.no-left-border
+					.flex-table-cell.center
+						h2= schema.title
+						if schema.description
+							div!= helpers.marked(schema.description)
 
-					if schema.title || schema.description
-						.flex-table-row.no-left-border
-							.flex-table-cell.center
-								h2= schema.title
-								if schema.description
-									div!= helpers.marked(schema.description)
+				.flex-table-headers
+					.flex-table-header Property
+					.flex-table-header.center Type
+					.flex-table-header.s2 Constraints
+					.flex-table-header.s2 Description
 
-					+properties(schema, 0)
+				if schema.title || schema.description
 
-		//- itemSchemas = []
-		//				if schema.properties
-		//					+properties(schema.properties, schema.required, 1)
-		//				if schema.patternProperties
-		//					+properties(schema.patternProperties, [])
-
-				//if itemSchemas.length
-				//	each itemSchema in itemSchemas
-				//		+jsonSchemaTable(itemSchema)
-
+				+properties(schema, 0)

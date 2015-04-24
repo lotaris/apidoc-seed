@@ -66,6 +66,18 @@ If you're building for a different context root, run
 
 	grunt prod --minifyAssets=true --baseUrl=/foobar
 
+You can use two different presentation for the JSON Schema representations. You can use a bordered indented schema or
+a border less indentation schema. For that, you can specify the option
+
+  grunt dev|prod --schemaIndentBordered=false|true
+  
+During the time you are writing the documentation, you probably want to see everything without having to click and click
+again on the page. Therefore, you can use the `devMod` option to collapse in all the collapsable elements. For that, use
+the following option. Pay attention this option is different from `grunt dev`. The dev mode can be used when building 
+API doc for prod.
+
+  grunt dev|prod --devMode=true|false
+
 ### Other Goals
 
 There are a few more Grunt tasks that can make your life easier:

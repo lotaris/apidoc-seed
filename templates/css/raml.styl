@@ -50,10 +50,10 @@ pre
     cursor pointer
 
 .badge-required
-  background-color #b92c31
+  background-color #b93634
 
 .badge-repeat
-  background-color #3b4de2
+  background-color #4a70e2
 
 res(i, max)
   if i < max
@@ -216,6 +216,9 @@ res(i, max)
   .right
     text-align right
 
+  .no-padding
+    padding 0 !important
+
   for i in 2..10
     .s{i}
       flex i !important
@@ -224,10 +227,12 @@ res(i, max)
     display flex
 
     .flex-table-header
-      border-left-width 1px
+      border-bottom 4px solid black
+      border-top 3px solid black
       border-left-style solid
-      font-size 1.2em
+      border-left-width 1px
       font-weight bold
+      font-size 1.2em
       padding 10px
       flex 1
 
@@ -269,7 +274,23 @@ res(i, max)
     .flex-table-cell:first-of-type
       border-left none
 
-  for i in 0..5
+  for i in 0..10
+    .flex-table.level-{i}
+      if i > 0
+        border-left 1px solid black
+        padding-left 10px
+
+      else
+        border-bottom 1px solid black
+
+      .flex-table-cell
+        border-bottom none !important
+
+      .property
+        margin-right i * -11px !important
+        margin-left 0 !important
+
+  for i in 0..10
     .flex-table-row.level-{i}
 
       .property
@@ -297,7 +318,6 @@ m-section(i, max, v)
 
       m-section(i + 1, max, lighten(v, 35%))
 
-
 for k, v in methods
   .badge-{k}
     background-color v
@@ -319,5 +339,8 @@ for k, v in methods
     ul.nav-tabs
       border-bottom 1px solid v
 
-    .flex-table-header, .flex-table-cell
+    .flex-table, .flex-table-header, .flex-table-cell
       border-color v !important
+
+    .flex-table-header
+      background-color lighten(v, 50%)

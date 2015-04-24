@@ -50,7 +50,7 @@ mixin namedParametersSection(uid, verb, sectionType, title, namedParameters)
 	.method-section
 		h3(data-toggle='collapse', data-target='##{uid}-#{verb}-#{sectionType}')= title
 		.method-section-content
-			.panel-collapse.collapse(id='#{uid}-#{verb}-#{sectionType}')
+			.panel-collapse.collapse(id='#{uid}-#{verb}-#{sectionType}', class='#{helpers.toggleStateClass()}')
 				+namedParameters(namedParameters)
 
 mixin example(example, uid)
@@ -96,11 +96,11 @@ mixin resource(resource, level)
 							span.badge(id='#{method.method}_#{resource.uniqueId}', class="badge-#{method.method}") #{method.method}
 
 		if resource.description && helpers.isShortable(resource.description)
-			.description.panel-collapse.collapse(id='#{resource.uniqueId}-description')!= helpers.marked(resource.description)
+			.description.panel-collapse.collapse(id='#{resource.uniqueId}-description', class='#{helpers.toggleStateClass()}')!= helpers.marked(resource.description)
 
 		if resource.methods
 			each method in resource.methods
-				.panel-collapse.collapse-method.collapse(id='#{resource.uniqueId}-#{method.method}', class="collapse-level-#{level}", data-ref='##{resource.uniqueId} > .collapse-level-#{level}')
+				.panel-collapse.collapse-method.collapse(id='#{resource.uniqueId}-#{method.method}', class="collapse-level-#{level}", data-ref='##{resource.uniqueId} > .collapse-level-#{level}', class='#{helpers.toggleStateClass()}')
 					.method(class="method-#{method.method}")
 						h4.method-title
 							span.verb(class='badge-#{method.method}') #{method.method}
@@ -170,7 +170,7 @@ mixin resource(resource, level)
 								.method-section
 									h3(data-toggle='collapse', href='##{resource.uniqueId}-#{method.method}-response') Response
 
-									.method-section-content.panel-collapse.collapse(id='#{resource.uniqueId}-#{method.method}-response')
+									.method-section-content.panel-collapse.collapse(id='#{resource.uniqueId}-#{method.method}-response', class='#{helpers.toggleStateClass()}')
 										+responsesSummary(method.responses)
 
 										each response, key in method.responses

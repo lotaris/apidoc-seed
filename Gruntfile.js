@@ -9,7 +9,9 @@ module.exports = function (grunt) {
 	var
 		baseUrl = (grunt.option('baseUrl') || '').replace(/\/$/, '') + '/',
 		minifyAssets = grunt.option('minifyAssets'),
-		scope = grunt.option('private') ? 'private' : 'public';
+		scope = grunt.option('private') ? 'private' : 'public',
+		devMode = (grunt.option('devMode')),
+		schemaIndentBordered = (grunt.option('schemaIndentBordered'));
 
 	var privateProcess = function(contents) {
 		return contents.replace(/[\r\n]<private>([\s\S]*?)<\/private>/gi, function(match, md) {
@@ -127,7 +129,12 @@ module.exports = function (grunt) {
 								params: {
 									pretty: true
 								},
-								helpers: helpers.helpers,
+								helpers: _.extend(helpers.helpers, {
+									toggleStateClass: function() {
+										return devMode ? 'in' : '';
+									},
+									isSchemaIndentBordered: schemaIndentBordered
+								}),
 								minifyAssets: minifyAssets
 							}
 						},

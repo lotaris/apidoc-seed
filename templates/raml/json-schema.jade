@@ -4,13 +4,13 @@ mixin jsonSchema(rawSchema, selectorPrefix)
 	.method-section
 		h3(data-toggle="collapse", href="##{selectorPrefix}-struct-collapse") JSON Schema Structure
 
-		.method-section-content.panel-collapse.collapse(id="#{selectorPrefix}-struct-collapse")
+		.method-section-content.panel-collapse.collapse(id="#{selectorPrefix}-struct-collapse", class='#{helpers.toggleStateClass()}')
 			+jsonSchemaTable(JSON.parse(rawSchema))
 
 	.method-section
 		h3(data-toggle="collapse", href="##{selectorPrefix}-raw-collapse") Raw JSON Schema
 
-		.method-section-content.panel-collapse.collapse(id="#{selectorPrefix}-raw-collapse")
+		.method-section-content.panel-collapse.collapse(id="#{selectorPrefix}-raw-collapse", class='#{helpers.toggleStateClass()}')
 			pre!= helpers.highlight(rawSchema)
 
 	//.method-section-content.panel-collapse.collapse.in(id="#{selectorPrefix}-collapse")
