@@ -1,3 +1,7 @@
+### :warning: Unmaintained.
+
+---
+
 # apidoc-seed
 
 *A boilerplate project for quickly getting your RAML documentation published.*
